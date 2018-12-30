@@ -39,7 +39,7 @@ install_brew () {
 install_from_brewfile () {
   $brew_path update --force
   echo "Installing brew dependencies, it will take 💩💩💩 loads of time. Time for a ☕️"
-  $brew_path bundle --verbose --force
+  $brew_path bundle --verbose --force --file=tilde/.Brewfile
   # install python support for neovim
   pip3 install --user neovim
 }
