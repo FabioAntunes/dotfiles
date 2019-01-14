@@ -95,9 +95,18 @@ set grepprg=ag\ --nogroup\ --nocolor
 " enable paste toggle, to keep original formatting
 set pastetoggle=<F10>
 
+" netrw settings
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+
 "
 " Keymaps
 "
+" Toggle netrw
+map <C-G> :Lex<CR>
 
 " clear highlights by hitting ctrl /
 nnoremap \ :noh<CR>
