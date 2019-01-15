@@ -141,7 +141,8 @@ function yolo -d "All your dotfiles are belong to us"
   function test_args --no-scope-shadowing
     set has_no_args 0
 
-    [ $has_force -ge 1 -a \( "$flags" != '-f' -o "$flags" = '--force' \) -o (count $flags) -eq 0 ]; and set has_no_args 1
+    [ $has_force -ge 1 -a \( "$flags" = '-f' -o "$flags" = '--force' \) -o (count $flags) -eq 0 ] 
+      and set has_no_args 1
 
     if test -n "$_flag_s"; or test $has_no_args -eq 1
       create_symlinks
