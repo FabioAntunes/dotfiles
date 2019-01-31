@@ -21,6 +21,8 @@ if test -d ~/platform-tools
   set -gx PATH ~/platform-tools $PATH
 end
 
+set -gx PATH $GOPATH/bin $PATH
+
 # add aws completions
 test -x (which aws_completer);\
   and complete --command aws --no-files --arguments\
