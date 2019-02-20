@@ -18,4 +18,4 @@ complete -f -c aws-okta -n "not __fish_seen_subcommand_from $okta_commands" -a v
 complete -f -c aws-okta -n "__fish_seen_subcommand_from exec; and not __fish_seen_subcommand_from (__fish_okta_complete_profiles)" -a "(__fish_okta_complete_profiles)"
 complete -f -c aws-okta -n "__fish_seen_subcommand_from (__fish_okta_complete_profiles); and not __fish_seen_subcommand_from --" -a "--"
 
-complete -c aws-okta -n "contains -- -- (commandline -opc)" -x -a "(__fish_complete_okta_subcommand)"
+complete -c aws-okta -n "contains -- exec -- (commandline -opc)" -x -a "(__fish_complete_okta_subcommand)"
