@@ -30,6 +30,7 @@ let g:mta_filetypes = {
 " ale
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
+\   'json': ['prettier'],
 \   'typescript': ['tslint'],
 \}
 let g:ale_linters = {
