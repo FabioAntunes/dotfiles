@@ -80,8 +80,9 @@ Plug 'thinca/vim-visualstar'
 Plug 'tpope/vim-commentary'
 " Provides easier unix commands like :Delete :Rename etc
 Plug 'tpope/vim-eunuch'
-" Git shortcuts like :Gblame :Gstatus etc
+" Git
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim'
 " enhanced repeat of the last command
 Plug 'tpope/vim-repeat'
 " easily surround sutff with tags, brackets, quotes, etc
