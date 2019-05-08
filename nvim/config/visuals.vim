@@ -15,11 +15,12 @@ highlight xmlAttrib cterm=italic
 " visual guideline for 120 characters
 set colorcolumn=120
 
+" enable relative numbers
+set relativenumber
 " reduce cpu use and improve scroll speed
-" by disabling any line highlight and relative numbers
+" by disabling any line highlight
 set nocursorcolumn
 set nocursorline
-set norelativenumber
 
 " go only back 256 lines when recreating syntax highlight
 " highlighting may be incorrect sometimes, but results are faster

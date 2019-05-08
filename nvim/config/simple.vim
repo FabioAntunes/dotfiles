@@ -107,7 +107,7 @@ let g:netrw_winsize = 15
 " Toggle netrw
 map <C-G> :Lex<CR>
 
-" clear highlights by hitting ctrl /
+" clear highlights by hitting /
 nnoremap \ :noh<CR>
 
 " Save file using sudo, if we don't have permissions
