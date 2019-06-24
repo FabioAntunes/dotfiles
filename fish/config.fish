@@ -3,7 +3,7 @@ set -gx DOTFILES ~/playground/dotfiles
 set -gx color_scheme 1
 
 # theme configs
-set -gx theme_display_k8s_namespace yes
+set -gx theme_display_k8s_namespace no
 set -gx theme_display_git_untracked yes
 set -gx theme_display_user no
 set -gx theme_display_git yes
@@ -58,12 +58,5 @@ if status --is-interactive
   source "$BASE16_SHELL/profile_helper.fish"
 end
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/fabioantunes/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/fabioantunes/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/fabioantunes/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish ]; and . /Users/fabioantunes/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /Users/fabioantunes/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.fish ]; and . /Users/fabioantunes/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.fish
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/fabioantunes/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/fabioantunes/Downloads/google-cloud-sdk/path.fish.inc'; end
