@@ -93,7 +93,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 
 " themes and status bar
-Plug 'chriskempson/base16-vim'
+Plug 'FabioAntunes/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
