@@ -6,8 +6,8 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
-  fish_path=/usr/local/homebrew/bin/fish
-  brew_path=/usr/local/homebrew/bin/brew
+  fish_path=/usr/local/bin/fish
+  brew_path=/usr/local/bin/brew
   defaults write -g InitialKeyRepeat -int 10
   defaults write -g KeyRepeat -int 2
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -31,9 +31,7 @@ config_git () {
 }
 
 install_brew () {
-  rm -rf homebrew; mkdir homebrew
-  curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew && \
-  sudo mv homebrew /usr/local/
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
 install_from_brewfile () {

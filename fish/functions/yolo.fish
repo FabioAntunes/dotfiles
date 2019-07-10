@@ -28,9 +28,9 @@ function yolo -d "All your dotfiles are belong to us"
     end
 
     function install_fisherman
-        curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+        curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
         # install fisher dependencies
-        fisher install
+        fisher
     end
 
     function install_node_packages
