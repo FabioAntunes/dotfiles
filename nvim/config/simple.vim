@@ -68,7 +68,12 @@ set nowritebackup
 set noswapfile
 " Undo changes, even when file was closed
 if !&diff
-  set undodir=~/.vim/undodir
+
+  if has('nvim')
+    set undodir=~/.local/share/nvim/undodir
+  else
+    set undodir=~/.vim/undodir
+  endif
   set undofile
 endif
 

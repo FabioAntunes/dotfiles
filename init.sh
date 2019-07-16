@@ -74,6 +74,8 @@ install_nvm
 install_powerfonts
 if [ "$(uname)" == "Darwin" ]; then
   touch ~/.hushlogin
+  mkdir -p ~/.local/share/nvim/undodir
+  mkdir -p ~/.vim/undodir
   install_brew
   install_from_brewfile
 fi
