@@ -32,12 +32,17 @@ let g:mta_filetypes = {
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'json': ['prettier'],
-\   'typescript': ['tslint'],
+\   'typescript': ['prettier', 'tslint'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'typescript': ['tslint', 'tsserver', 'typecheck'],
+\   'typescript': ['tsserver', 'typecheck'],
 \}
+
+" Shitty typescript stuff
+let g:ale_typescript_tslint_use_global = 0
+let g:ale_typescript_tslint_config_path = ''
+let g:ale_linters_ignore = {'typescript': ['tslint']}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1
