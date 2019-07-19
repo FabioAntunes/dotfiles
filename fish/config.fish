@@ -59,4 +59,4 @@ if status --is-interactive
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/fabioantunes/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/fabioantunes/Downloads/google-cloud-sdk/path.fish.inc'; end
+if [ -f '/Users/fabios/google-cloud-sdk/path.fish.inc' ]; . '/Users/fabios/google-cloud-sdk/path.fish.inc'; end
