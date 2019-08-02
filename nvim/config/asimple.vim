@@ -94,15 +94,21 @@ set hlsearch
 set nobackup
 set nowritebackup
 set noswapfile
+
 " Undo changes, even when file was closed
 if !&diff
-
   if has('nvim')
     set undodir=~/.local/share/nvim/undodir
   else
     set undodir=~/.vim/undodir
   endif
   set undofile
+endif
+
+" clear vim from the terminal afte closing
+if &term =~ "ansi"
+  let &t_ti = "\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l"
 endif
 
 " make backspace behave normal
