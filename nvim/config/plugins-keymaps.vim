@@ -20,9 +20,10 @@ nnoremap <Leader>p :Files<cr>
 nnoremap <Leader>f :Ag<cr>
 nnoremap <Leader>b :Buffers<cr>
 
-nmap <Leader><tab> <plug>(fzf-maps-n)
-xmap <Leader><tab> <plug>(fzf-maps-x)
-omap <Leader><tab> <plug>(fzf-maps-o)
+nmap <c-r> <plug>(fzf-maps-n)
+imap <c-r> <plug>(fzf-maps-i)
+xmap <c-r> <plug>(fzf-maps-x)
+omap <c-r> <plug>(fzf-maps-o)
 
 " Insert mode completion
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -46,8 +47,8 @@ function! s:make_path(path)
     endif
   endif
 
-  " strip extensions from the file, if it's tsx? jsx? Or strip the entire name
-  " if it's an "index.jsx?" or "index.tsx"
+  " strip extensions from the file, if it's tsx? jsx?
+  " or strip the entire name if it's an "index.jsx?" or "index.tsx?"
   return substitute(l:relPath, '\(\(\/index\)\?\(\.tsx\?\|\.jsx\?\)\)\?\n\+$', '', '')
 endfunction
 

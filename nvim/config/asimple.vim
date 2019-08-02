@@ -2,6 +2,34 @@
 " basic single file config
 "
 
+"
+" Colours and aspect
+"
+
+set termguicolors
+
+
+" make comments italic https://stackoverflow.com/a/30937851/1449157
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+highlight Comment cterm=italic
+highlight xmlAttrib cterm=italic
+
+" visual guideline for 120 characters
+set colorcolumn=120
+
+" enable relative numbers
+set relativenumber
+" reduce cpu use and improve scroll speed
+" by disabling any line highlight
+set nocursorcolumn
+set nocursorline
+
+" go only back 256 lines when recreating syntax highlight
+" highlighting may be incorrect sometimes, but results are faster
+syntax sync minlines=256
+
+"------------------------------------------------------------------
 
 "
 " General settings
@@ -106,6 +134,8 @@ let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_winsize = 15
 
+"------------------------------------------------------------------
+
 "
 " Keymaps
 "
@@ -160,7 +190,7 @@ nnoremap <Leader>8 "*p
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
-
+"------------------------------------------------------------------
 
 "
 " COMMANDS
