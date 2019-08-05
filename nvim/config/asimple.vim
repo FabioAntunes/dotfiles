@@ -196,6 +196,9 @@ nnoremap <Leader>8 "*p
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+" vertical split help
+cabbrev h vert h
+
 "------------------------------------------------------------------
 
 "

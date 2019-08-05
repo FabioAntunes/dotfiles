@@ -1,4 +1,5 @@
 {
+"Profiles": [{
   "Transparency" : 0,
   "Tags" : [
     "Dynamic"
@@ -492,4 +493,4 @@
     "Blue Component" : 0.83529410000000004,
     "Green Component" : 0.38823530000000001
   }
-}
+}]}
