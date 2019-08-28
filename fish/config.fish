@@ -1,5 +1,5 @@
 # misc vars
-set -gx DOTFILES ~/playground/dotfiles
+set -gx DOTFILES (string replace /fish '' (dirname (readlink (status --current-filename))))
 set -gx color_scheme 1
 
 # theme configs
