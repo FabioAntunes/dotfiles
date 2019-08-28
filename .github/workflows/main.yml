@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    name: Test dotfiles on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+        
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dotfiles
+      run: bash init.sh
