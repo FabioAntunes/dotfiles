@@ -83,7 +83,7 @@
   "Blinking Cursor" : false,
   "Disable Window Resizing" : true,
   "Sync Title" : false,
-  "Prompt Before Closing 2" : false,
+  "Prompt Before Closing 2" : 1,
   "BM Growl" : true,
   "Command" : "",
   "Description" : "Masterzord",
