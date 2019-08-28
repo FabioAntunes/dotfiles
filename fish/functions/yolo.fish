@@ -41,23 +41,30 @@ function yolo -d "All your dotfiles are belong to us"
         set plug_url https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs $plug_url
         curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs $plug_url
+
         # install Plugins for vim and neovim
-        vim +PlugInstall +qall
-        nvim +PlugInstall +qall
+        if status --is-interactive; and [ "$GITHUB_ACTIONS" != "true" ]
+          vim +PlugInstall +qall
+          nvim +PlugInstall +qall
+        else
+          vim +PlugInstall +qall > /dev/null
+          nvim +PlugInstall +qall > /dev/null
+
+        end
     end
 
     function copy_files
+        echo  -e "\nCopying files"
         set origin $dir/consolas-powerline/*.ttf
-        set dest ~/Library/Fonts/
+        set dest $HOME/Library/Fonts/
 
         if test $has_force -ge 1
             cp -f $origin $dest
-            [ $status -eq 0 ]; and echo -e "\nFiles copied successfully: $origin"
-
         else
             cp $origin $dest
-            [ $status -eq 0 ]; and echo -e "\nFiles copied successfully: $origin"
         end
+
+        [ $status -eq 0 ]; and echo -e "\nFiles copied successfully: $origin"; or echo -e "\nNo files copied"
     end
 
     function create_symlink
@@ -160,14 +167,14 @@ function yolo -d "All your dotfiles are belong to us"
         install_vim_plug
     end
 
-    if test -n "$_flag_n"
-        or not set -q functions_list[1]
-        install_node_packages
-    end
-
     if test -n "$_flag_c"
         or not set -q functions_list[1]
         copy_files
     end
 
+
+    if test -n "$_flag_n"
+        or not set -q functions_list[1]
+        install_node_packages
+    end
 end

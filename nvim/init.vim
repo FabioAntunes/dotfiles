@@ -104,11 +104,11 @@ runtime! config/*.vim
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
-  source ~/.vimrc_background
+  source $HOME/.vimrc_background
 endif
 
 if exists('g:colors_name')
-  let coloursettings = '~/playground/dotfiles/nvim/config/colours/'.g:colors_name.'.vim'
+  let coloursettings = '$DOTFILES/nvim/config/colours/'.g:colors_name.'.vim'
   if !empty(glob(coloursettings))
     execute 'source '.coloursettings
   endif
