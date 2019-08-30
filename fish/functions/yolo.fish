@@ -42,14 +42,14 @@ function yolo -d "All your dotfiles are belong to us"
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs $plug_url
         curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs $plug_url
 
-        # install Plugins for vim and neovim
+        #install Plugins for vim and neovim
         if status --is-interactive; and [ "$GITHUB_ACTIONS" != "true" ]
           vim +PlugInstall +qall
           nvim +PlugInstall +qall
-        else
-          vim +PlugInstall +qall > /dev/null
-          nvim +PlugInstall +qall > /dev/null
-
+        # else
+          # disable plug install on the ci, it's flaky
+          # vim -e -c ":silent PlugInstall!" -c ":qall" > /dev/null
+          # nvim -e -c ":silent PlugInstall!" -c ":qall" > /dev/null
         end
     end
 
@@ -57,6 +57,7 @@ function yolo -d "All your dotfiles are belong to us"
         echo  -e "\nCopying files"
         set origin $dir/consolas-powerline/*.ttf
         set dest $HOME/Library/Fonts/
+        mkdir -p $dest
 
         if test $has_force -ge 1
             cp -f $origin $dest
@@ -171,7 +172,6 @@ function yolo -d "All your dotfiles are belong to us"
         or not set -q functions_list[1]
         copy_files
     end
-
 
     if test -n "$_flag_n"
         or not set -q functions_list[1]

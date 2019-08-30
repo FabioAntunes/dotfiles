@@ -49,8 +49,8 @@ else
 endif
 
 " tern
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install --global tern' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --global tern' }
+Plug 'ternjs/tern_for_vim'
+Plug 'carlitux/deoplete-ternjs'
 
 " Run async stuff
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
