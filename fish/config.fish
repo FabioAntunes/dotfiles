@@ -24,7 +24,7 @@ end
 set -gx PATH $GOPATH/bin $PATH
 
 # add aws completions
-test -x (which aws_completer);\
+type -q aws_completer;\
   and complete --command aws --no-files --arguments\
   '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
@@ -59,4 +59,4 @@ if status --is-interactive
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/fabioantunes/google-cloud-sdk/path.fish.inc' ]; . '/Users/fabioantunes/google-cloud-sdk/path.fish.inc'; end
+if [ -f '$HOME/google-cloud-sdk/path.fish.inc' ]; source '$HOME/google-cloud-sdk/path.fish.inc'; end

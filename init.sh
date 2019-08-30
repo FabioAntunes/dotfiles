@@ -1,13 +1,10 @@
 #!/bin/bash
 
-if [[ $EUID -eq 0 ]]; then
-    error "This script should not be run using sudo or as the root user"
-    exit 1
-fi
-
 if [ "$GITHUB_ACTIONS" = "true" ]; then
   # osx on Github actions has node installed already
-  npm config delete prefix
+  command -v npm > /dev/null && npm config delete prefix
+  # we need to pull our submodules
+  git submodule update --recursive --remote
 fi
 
 
@@ -15,6 +12,7 @@ fi
 config_git () {
   # although this file doesn't exist, yet, git doesn't seem to be bothered by that
   git config --global core.excludesfile ~/.gitignore_global
+  # don't run if the terminal isn't interactive
   if [[ $- == *i* ]]; then
     echo "git user name:"
     read username
@@ -39,16 +37,13 @@ install_from_brewfile () {
   $brew_path update --force
   echo "Installing brew dependencies, it will take 💩💩💩 loads of time. Time for a ☕️"
   $brew_path bundle --verbose --force --file=tilde/.Brewfile
-  # install python support for neovim
-  python3 -m pip install pynvim
 }
 
 set_fish_shell () {
-  $fish_path="$(command -v fish)"
-  echo -e "\nYOLO"
-  echo $fish_path
-  echo -e "\nYOLO"
-  if type $fish_path > /dev/null; then
+  fish_path=$(command -v fish)
+
+  if command -v fish > /dev/null; then
+    echo -e "\nSetting fish shell $fish_path"
     echo $fish_path | sudo tee -a /etc/shells
     sudo chsh -s $fish_path
 
@@ -91,9 +86,18 @@ if [ "$(uname)" == "Darwin" ]; then
   install_brew
   install_from_brewfile
 else
-  sudo apt-add-repository ppa:fish-shell/release-3
   sudo apt-get update
-  sudo apt-get -y install fish python3-pip neovim python3-neovim
+  sudo apt-get install -y software-properties-common
+  sudo apt-add-repository -y ppa:fish-shell/release-3
+  sudo apt-add-repository -y ppa:neovim-ppa/stable
+  sudo apt-get update
+  sudo apt-get -y install fish vim-gtk python3 python3-dev python3-pip python3-setuptools neovim
+fi
+
+if command -v pip3 > /dev/null; then
+  # install python support for nvim
+  pip3 install wheel
+  pip3 install --user pynvim
 fi
 
 set_fish_shell
