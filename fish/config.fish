@@ -10,11 +10,12 @@ set -gx theme_display_git yes
 set -gx theme_color_scheme terminal
 set -gx theme_display_date no
 set -gx theme_display_cmd_duration no
+  set -gx IS_OSX 1
 
 # use ag to pipe the results to fzf, ag respects the gitignore
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 if test (uname -s) = 'Darwin'
-  set -gx IS_OSX 1
+  set -gx IS_OSX 0
   set -gx PATH /usr/local/homebrew/bin $PATH
 end
 if test -d ~/platform-tools
@@ -30,7 +31,7 @@ type -q aws_completer;\
 
 
 function postexec --on-event fish_postexec
-  if test (count $argv) -ge 1; and test $IS_OSX -eq 1
+  if test (count $argv) -ge 1; and test $IS_OSX -eq 0
     if string match -q -- "*brew install*" $argv;\
       or string match -q -- "*brew cask install*" $argv;\
       or string match -q -- "*brew remove*" $argv;

@@ -24,7 +24,7 @@ brew "watch"
 brew "watchman"
 brew "wget"
 brew "yamllint"
-brew "yarn", args: ["ignore-dependencie"]
+brew "yarn", args: ["ignore-dependencies"]
 brew "tflint"
 cask "atom"
 cask "flux"
