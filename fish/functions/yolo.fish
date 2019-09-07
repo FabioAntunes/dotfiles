@@ -46,8 +46,8 @@ function yolo -d "All your dotfiles are belong to us"
         if status --is-interactive; and [ "$GITHUB_ACTIONS" != "true" ]
           vim +PlugInstall +qall
           nvim +PlugInstall +qall
+        # disable plug install on the ci, it's flaky
         # else
-          # disable plug install on the ci, it's flaky
           # vim -e -c ":silent PlugInstall!" -c ":qall" > /dev/null
           # nvim -e -c ":silent PlugInstall!" -c ":qall" > /dev/null
         end
