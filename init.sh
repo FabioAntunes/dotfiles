@@ -7,11 +7,18 @@ if [ "$GITHUB_ACTIONS" = "true" ]; then
   git submodule update --recursive --remote
 fi
 
-
+make_dirs () {
+  mkdir -p $HOME/.local/share/nvim/undodir
+  mkdir -p $HOME/.vim/undodir
+  mkdir -p $HOME/playground
+  mkdir -p $HOME/work
+}
 
 config_git () {
   # although this file doesn't exist, yet, git doesn't seem to be bothered by that
-  git config --global core.excludesfile ~/.gitignore_global
+  git config --global core.excludesfile $HOME/.gitignore_global
+  git config --global alias.yolo "push origin head --no-verify --force-with-lease"
+
   # don't run if the terminal isn't interactive
   if [[ $- == *i* ]]; then
     echo "git user name:"
@@ -71,11 +78,8 @@ install_nvm () {
   nvm install --lts
   nvm alias default 'lts/*'
 }
-mkdir -p $HOME/.local/share/nvim/undodir
-mkdir -p $HOME/.vim/undodir
-mkdir -p $HOME/playground
-mkdir -p $HOME/work
 
+make_dirs
 config_git
 install_nvm
 install_powerfonts

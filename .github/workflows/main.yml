@@ -9,8 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
-        
     steps:
     - uses: actions/checkout@v1
     - name: Install dotfiles
-      run: bash init.sh
+      run: bash init.sh && fish -c "fishtape tests/*.fish"
