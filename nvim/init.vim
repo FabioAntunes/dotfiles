@@ -69,6 +69,10 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 
+" Shitty typescript stuff
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'peitalin/vim-jsx-typescript'
+
 " themes and status bar
 Plug 'FabioAntunes/base16-vim'
 Plug 'vim-airline/vim-airline'

@@ -40,15 +40,23 @@ let g:ale_fixers = {
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'go': ['golangci-lint'],
+\   'typescript': ['tsserver', 'eslint'],
 \}
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
+
 let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_delay = 1000
 let g:ale_lint_on_enter = 0 " don't lint when we open a file
 let g:ale_sign_error = '✖' " looks nicer than the default >>
 let g:ale_sign_warning = '⚑'
+
+" Shitty typescript stuff
+let g:ale_typescript_tslint_use_global = 0
+let g:ale_typescript_tslint_config_path = ''
+let g:ale_linters_ignore = {'typescript': ['tslint']}
+" end of shitty typescript stuff
 
 " coc.nvim
 set cmdheight=2 " Better display for messages
