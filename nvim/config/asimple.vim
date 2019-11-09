@@ -18,6 +18,9 @@ highlight xmlAttrib cterm=italic
 " visual guideline for 120 characters
 set colorcolumn=120
 
+" enable mouse and scroll
+set mouse=a
+
 " enable relative numbers
 set relativenumber
 " reduce cpu use and improve scroll speed

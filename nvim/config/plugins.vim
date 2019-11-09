@@ -65,6 +65,9 @@ let g:user_emmet_leader_key='<C-Z>'
 " vim-javascript
 let g:javascript_plugin_flow = 1
 
+" vim-localvimrc
+let g:localvimrc_persistent = 1
+
 " FZF.vim
 let g:fzf_prefer_tmux = 1
 
