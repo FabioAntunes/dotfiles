@@ -44,8 +44,8 @@ Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
 " highlights matching tags
 Plug 'Valloric/MatchTagAlways'
-" Insert or delete brackets, parens, quotes in pair.
-Plug 'jiangmiao/auto-pairs'
+" Insert or delete multi-character pairs, with intelligent matching
+Plug 'tmsvg/pear-tree'
 " Asks to create directories in Vim when needed
 Plug 'jordwalke/VimAutoMakeDirectory'
 " fuzzy searching using fzf
