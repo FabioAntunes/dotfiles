@@ -28,6 +28,9 @@ let g:mta_filetypes = {
   \ 'xml' : 1
 \}
 
+" always show signcolumns
+set signcolumn=yes
+
 " ale
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
@@ -38,31 +41,25 @@ let g:ale_linters = {
 \}
 
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:ale_open_list = 'on_save'
 let g:ale_lint_delay = 1000
 let g:ale_lint_on_enter = 0 " don't lint when we open a file
 let g:ale_sign_error = '✖' " looks nicer than the default >>
 let g:ale_sign_warning = '⚑'
 
+" coc.nvim
+set cmdheight=2 " Better display for messages
+set updatetime=300
+set shortmess+=c " don't give ins-completion-menu messages.
+let g:coc_global_extensions = [
+\ 'coc-json',
+\ 'coc-tsserver',
+\ 'coc-html',
+\ 'coc-css',
+\ ]
+
 " Emmet remap
 let g:user_emmet_leader_key='<C-Z>'
-
-" deoplete allow JSX in normal JS files
-let g:jsx_ext_required = 0
-let g:deoplete#enable_at_startup = 1
-" deoplete and tern configs
-let g:tern_request_timeout = 1
-" This do disable full signature type on autocomplete
-let g:tern_show_signature_in_pum = '0'  
-let g:deoplete#file#enable_buffer_path = '1'
-"Add extra filetypes
-let g:tern#filetypes = ['jsx', 'javascript.jsx']
-" Use tern_for_vim.
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
-
 
 " vim-javascript
 let g:javascript_plugin_flow = 1

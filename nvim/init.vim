@@ -13,47 +13,26 @@ else
 endif
 
 " Syntax
-" Javascript, Node and React
 Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
 Plug 'mxw/vim-jsx', {'for': ['javascript', 'javascript.jsx']}
 Plug 'styled-components/vim-styled-components', {'for': ['javascript', 'javascript.jsx']}
-" css and scss
+Plug 'othree/html5.vim'
 Plug 'JulesWang/css.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'ap/vim-css-color'
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
-" html
-Plug 'othree/html5.vim'
 Plug 'tpope/vim-git'
 Plug 'dag/vim-fish'
 Plug 'elzr/vim-json'
-" golang
 Plug 'fatih/vim-go', { 'for': 'go' }
-" terraform
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-" pandoc and markdown
-Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc' " pandoc and markdown
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
-" linter
+" linter, fixer and lsp
 Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" deoplete for nvim and vim
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-" tern
-Plug 'ternjs/tern_for_vim'
-Plug 'carlitux/deoplete-ternjs'
-
-" Run async stuff
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " emmet support
 Plug 'mattn/emmet-vim'
 " enhanced quickfix window
@@ -106,6 +85,16 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source $HOME/.vimrc_background
 endif
+
+function! Dot_set_colours(bg, error_fg, warning_fg)
+  exe 'hi ALEError guibg=' . a:bg . ' cterm=underline'
+  exe 'hi ALEErrorSign guibg=' . a:bg . ' guifg=' . a:error_fg
+  exe 'hi ALEWarning guibg=' . a:bg . ' cterm=underline'
+  exe 'hi ALEWarningSign guibg=' . a:bg . ' guifg=' . a:warning_fg
+  exe 'hi CocErrorSign guibg=' . a:bg . ' guifg=' . a:error_fg
+  exe 'hi CocInfoSign guibg=' . a:bg . ' guifg=' . a:warning_fg
+  exe 'hi CocWarningSign guibg=' . a:bg . ' guifg=' . a:warning_fg
+endfunction
 
 if exists('g:colors_name')
   let coloursettings = '$DOTFILES/nvim/config/colours/'.g:colors_name.'.vim'
