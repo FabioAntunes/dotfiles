@@ -34,7 +34,7 @@ function yolo -d "All your dotfiles are belong to us"
     end
 
     function install_node_packages
-        npm i -g eslint stylelint prettier eslint-config-prettier eslint-plugin-react stylelint-config-recommended
+        npm i -g eslint stylelint prettier eslint-config-prettier eslint-plugin-react stylelint-config-recommended eslint_d
     end
 
     function install_vim_plug
