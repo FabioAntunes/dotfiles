@@ -45,7 +45,7 @@ nnoremap <Leader>p :Files<cr>
 nnoremap <Leader>f :Ag<cr>
 nnoremap <Leader>b :Buffers<cr>
 
-nmap <c-r> <plug>(fzf-maps-n)
+nmap <Leader>r <plug>(fzf-maps-n)
 imap <c-r> <plug>(fzf-maps-i)
 xmap <c-r> <plug>(fzf-maps-x)
 omap <c-r> <plug>(fzf-maps-o)
