@@ -39,6 +39,10 @@ install_brew () {
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
+install_yarn () {
+  curl -o- -L https://yarnpkg.com/install.sh | bash
+}
+
 install_from_brewfile () {
   brew_path=/usr/local/bin/brew
   $brew_path update --force
@@ -82,6 +86,7 @@ install_nvm () {
 make_dirs
 config_git
 install_nvm
+install_yarn
 install_powerfonts
 if [ "$(uname)" == "Darwin" ]; then
   defaults write -g InitialKeyRepeat -int 10
