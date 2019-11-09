@@ -23,7 +23,6 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 # OS generated files #
@@ -45,3 +44,4 @@ node_modules/
 **/.tern-port
 .lvimrc
 **/.lvimrc
+.npmrc
