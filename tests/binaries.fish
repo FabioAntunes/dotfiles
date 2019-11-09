@@ -1,7 +1,7 @@
 ##########################
 # Test binaries installed
 ##########################
-set -l binaries node vim nvim
+set -l binaries node vim nvim yarn
 if test (uname) = 'Darwin'
   set -a binaries brew
 end
