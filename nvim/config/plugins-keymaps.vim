@@ -3,10 +3,35 @@
 "
 
 " ale
-nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>j <Plug>(ale_next_wrap)
-nmap <silent> <Leader>td <Plug>(ale_go_to_definition)
-nmap <silent> <Leader>tr <Plug>(ale_find_references)
+nmap <silent> [a <Plug>(ale_previous_wrap)
+nmap <silent> ]a <Plug>(ale_next_wrap)
+noremap <Leader>al :call ALEListToggle()<CR>
+
+function! ALEListToggle()
+  if get(getloclist(0, {'winid':0}), 'winid', 0)
+    lclose
+  else
+    lopen
+  endif
+endfunction
+
+"coc.nvim
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> <Leader>td <Plug>(coc-definition)
+nmap <silent> <Leader>tr <Plug>(coc-references)
+nmap <silent> <Leader>tn <Plug>(coc-rename)
+nnoremap <silent> <Leader>cl  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <Leader>cd :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 
 " autoclose tag with omnifunc
 iabbrev </ </<C-X><C-O>
@@ -55,15 +80,3 @@ endfunction
 inoremap <expr> <c-o><c-p> fzf#complete(fzf#wrap({
   \ 'source':  'ag -g ""',
   \ 'reducer': function('<sid>make_path')}))
-
-if has('nvim')
-  " neovim terminal configs
-  tnoremap <A-h> <C-\><C-n><C-w>h
-  tnoremap <A-j> <C-\><C-n><C-w>j
-  tnoremap <A-k> <C-\><C-n><C-w>k
-  tnoremap <A-l> <C-\><C-n><C-w>l
-  nnoremap <A-h> <C-w>h
-  nnoremap <A-j> <C-w>j
-  nnoremap <A-k> <C-w>k
-  nnoremap <A-l> <C-w>l
-endif

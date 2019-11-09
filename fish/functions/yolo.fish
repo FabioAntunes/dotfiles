@@ -34,7 +34,7 @@ function yolo -d "All your dotfiles are belong to us"
     end
 
     function install_node_packages
-        npm i -g eslint stylelint tern prettier eslint-config-prettier eslint-plugin-react stylelint-config-recommended
+        npm i -g eslint stylelint prettier eslint-config-prettier eslint-plugin-react stylelint-config-recommended
     end
 
     function install_vim_plug
@@ -46,10 +46,6 @@ function yolo -d "All your dotfiles are belong to us"
         if status --is-interactive; and [ "$GITHUB_ACTIONS" != "true" ]
           vim +PlugInstall +qall
           nvim +PlugInstall +qall
-        # disable plug install on the ci, it's flaky
-        # else
-          # vim -e -c ":silent PlugInstall!" -c ":qall" > /dev/null
-          # nvim -e -c ":silent PlugInstall!" -c ":qall" > /dev/null
         end
     end
 

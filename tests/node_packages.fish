@@ -1,7 +1,7 @@
 ################################################
 # tests if global node modules were installed  #
 ################################################
-set -l packages eslint stylelint tern prettier eslint-config-prettier eslint-plugin-react stylelint-config-recommended
+set -l packages eslint stylelint prettier eslint-config-prettier eslint-plugin-react stylelint-config-recommended
 
 npm ls -g --depth=0 --parseable > temp_npm.txt
 
