@@ -59,9 +59,6 @@ let g:coc_global_extensions = [
 \ 'coc-css',
 \ ]
 
-" Emmet remap
-let g:user_emmet_leader_key='<C-Z>'
-
 " vim-javascript
 let g:javascript_plugin_flow = 1
 

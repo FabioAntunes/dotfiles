@@ -1,0 +1,8 @@
+{
+  "diagnostic": {
+    "errorSign": "✖",
+    "warningSign": "⚑",
+    "infoSign": "⚑",
+    "hintSign": "⚑"
+  }
+}

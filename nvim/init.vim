@@ -33,8 +33,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" emmet support
-Plug 'mattn/emmet-vim'
 " enhanced quickfix window
 Plug 'romainl/vim-qf'
 " Snippets
@@ -44,8 +42,8 @@ Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
 " highlights matching tags
 Plug 'Valloric/MatchTagAlways'
-" Insert or delete multi-character pairs, with intelligent matching
-Plug 'tmsvg/pear-tree'
+" Insert or delete multi-character pairs
+Plug 'jiangmiao/auto-pairs'
 " Asks to create directories in Vim when needed
 Plug 'jordwalke/VimAutoMakeDirectory'
 " fuzzy searching using fzf

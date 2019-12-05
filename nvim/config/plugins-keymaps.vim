@@ -55,9 +55,6 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Pear tree add spaces
-imap <Space> <Plug>(PearTreeSpace)
-
 " using fzf to search for a file and generate a relative path
 " relative to the current buffer
 function! s:make_path(path)
