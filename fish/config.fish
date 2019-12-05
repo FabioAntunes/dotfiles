@@ -14,15 +14,21 @@ set -gx IS_OSX 0
 
 # use ag to pipe the results to fzf, ag respects the gitignore
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
-if test (uname -s) = 'Darwin'
+
+set -l brew_path /usr/local/homebrew/bin
+if test (uname -s) = 'Darwin'; and not contains $brew_path $PATH
   set -gx IS_OSX 1
-  set -gx PATH /usr/local/homebrew/bin $PATH
-end
-if test -d ~/platform-tools
-  set -gx PATH ~/platform-tools $PATH
+  set -gx PATH $brew_path $PATH
 end
 
-set -gx PATH $GOPATH/bin $PATH
+set -l platform_tools_path ~/platform-tools
+if test -d $platform_tools_path; and not contains $platform_tools_path $PATH
+  set -gx PATH $platform_tools_path $PATH
+end
+
+if not contains $GOPATH/bin $PATH
+  set -gx PATH $GOPATH/bin $PATH
+end
 
 # add aws completions
 type -q aws_completer;\
