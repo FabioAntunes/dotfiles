@@ -44,16 +44,12 @@ nmap <Leader>s :SplitjoinSplit<cr>
 nnoremap <Leader>p :Files<cr>
 nnoremap <Leader>f :Ag<cr>
 nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>m :Maps<cr>
 
-nmap <Leader>r <plug>(fzf-maps-n)
 imap <c-r> <plug>(fzf-maps-i)
 xmap <c-r> <plug>(fzf-maps-x)
 omap <c-r> <plug>(fzf-maps-o)
 
-" Insert mode completion
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " using fzf to search for a file and generate a relative path
 " relative to the current buffer
