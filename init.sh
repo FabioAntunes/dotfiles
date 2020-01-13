@@ -10,6 +10,7 @@ fi
 make_dirs () {
   mkdir -p $HOME/.local/share/nvim/undodir
   mkdir -p $HOME/.vim/undodir
+  mkdir -p $HOME/go
   mkdir -p $HOME/playground
   mkdir -p $HOME/work
 }
@@ -41,6 +42,19 @@ install_brew () {
 
 install_yarn () {
   curl -o- -L https://yarnpkg.com/install.sh | bash
+}
+
+install_go () {
+  filename="$(curl 'https://golang.org/VERSION?m=text').$1-amd64.tar.gz"
+  tar_archive="https://dl.google.com/go/$filename"
+  echo "Dowloading go from: $tar_archive"
+  wget $tar_archive && sudo tar -C /usr/local -xzf $filename
+  if [ $? -eq 0 ]; then
+    /usr/local/go/bin/go get golang.org/x/tools/cmd/godoc
+    /usr/local/go/bin/go get golang.org/x/tools/cmd/goimports
+    /usr/local/go/bin/go get -u github.com/go-delve/delve/cmd/dlv
+    GO111MODULE=on go get golang.org/x/tools/gopls@latest
+  fi
 }
 
 install_from_brewfile () {
@@ -89,9 +103,11 @@ install_nvm
 install_yarn
 install_powerfonts
 if [ "$(uname)" == "Darwin" ]; then
+  DevToolsSecurity -enable
   defaults write -g InitialKeyRepeat -int 10
   defaults write -g KeyRepeat -int 2
   touch $HOME/.hushlogin
+  install_go "darwin"
   install_brew
   install_from_brewfile
 else
@@ -101,6 +117,7 @@ else
   sudo apt-add-repository -y ppa:neovim-ppa/stable
   sudo apt-get update
   sudo apt-get -y install fish vim-gtk python3 python3-dev python3-pip python3-setuptools neovim
+  install_go "linux"
 fi
 
 if command -v pip3 > /dev/null; then
