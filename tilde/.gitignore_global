@@ -38,10 +38,13 @@
 ehthumbs.db
 Thumbs.db
 
-#JS stuff
-node_modules/
+#vim stuff
 .tern-port
 **/.tern-port
 .lvimrc
 **/.lvimrc
+.vim
+
+#JS stuff
+node_modules/
 .npmrc

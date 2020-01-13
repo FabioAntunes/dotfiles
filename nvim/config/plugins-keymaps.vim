@@ -72,7 +72,3 @@ function! s:make_path(path)
   " or strip the entire name if it's an "index.jsx?" or "index.tsx?"
   return substitute(l:relPath, '\(\(\/index\)\?\(\.tsx\?\|\.jsx\?\)\)\?\n\+$', '', '')
 endfunction
-
-inoremap <expr> <c-o><c-p> fzf#complete(fzf#wrap({
-  \ 'source':  'ag -g ""',
-  \ 'reducer': function('<sid>make_path')}))
