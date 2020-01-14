@@ -16,8 +16,8 @@ set -gx IS_OSX 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 
 function add_to_path
-  if not contains $argv[1] $PATH
-    set -gx PATH $argv[1] $PATH
+  if not contains $argv[1] $fish_user_paths
+    set -gx fish_user_paths $argv[1] $fish_user_paths
   end
 end
 
@@ -30,7 +30,7 @@ if test -d $HOME/platform-tools
   add_to_path $HOME/platform-tools
 end
 
-add_to_path $GOPATH/bin $PATH
+add_to_path $GOPATH/bin
 
 # add aws completions
 type -q aws_completer;\
