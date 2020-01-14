@@ -44,16 +44,25 @@ install_yarn () {
   curl -o- -L https://yarnpkg.com/install.sh | bash
 }
 
+install_go_dependencies () {
+  /usr/local/go/bin/go get golang.org/x/tools/cmd/godoc
+  /usr/local/go/bin/go get golang.org/x/tools/cmd/goimports
+  /usr/local/go/bin/go get -u github.com/go-delve/delve/cmd/dlv
+  GO111MODULE=on go get golang.org/x/tools/gopls@latest
+}
+
 install_go () {
-  filename="$(curl 'https://golang.org/VERSION?m=text').$1-amd64.tar.gz"
-  tar_archive="https://dl.google.com/go/$filename"
-  echo "Dowloading go from: $tar_archive"
-  wget $tar_archive && sudo tar -C /usr/local -xzf $filename
-  if [ $? -eq 0 ]; then
-    /usr/local/go/bin/go get golang.org/x/tools/cmd/godoc
-    /usr/local/go/bin/go get golang.org/x/tools/cmd/goimports
-    /usr/local/go/bin/go get -u github.com/go-delve/delve/cmd/dlv
-    GO111MODULE=on go get golang.org/x/tools/gopls@latest
+  if [ "$GITHUB_ACTIONS" = "true" ]; then
+    # machines on Github actions already have golang installed
+    install_go_dependencies
+  else
+    filename="$(curl 'https://golang.org/VERSION?m=text').$1-amd64.tar.gz"
+    tar_archive="https://dl.google.com/go/$filename"
+    echo "Dowloading go from: $tar_archive"
+    wget $tar_archive && sudo tar -C /usr/local -xzf $filename
+    if [ $? -eq 0 ]; then
+      install_go_dependencies
+    fi
   fi
 }
 
