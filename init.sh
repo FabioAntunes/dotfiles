@@ -48,7 +48,7 @@ install_go_dependencies () {
   /usr/local/go/bin/go get golang.org/x/tools/cmd/godoc
   /usr/local/go/bin/go get golang.org/x/tools/cmd/goimports
   /usr/local/go/bin/go get -u github.com/go-delve/delve/cmd/dlv
-  GO111MODULE=on go get golang.org/x/tools/gopls@latest
+  GO111MODULE=on /usr/local/go/bin/go get golang.org/x/tools/gopls@latest
 }
 
 install_go () {
@@ -99,7 +99,7 @@ install_powerfonts () {
 }
 
 install_nvm () {
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
   # manually source nvm
   \. "$HOME/.nvm/nvm.sh"
   nvm install --lts
