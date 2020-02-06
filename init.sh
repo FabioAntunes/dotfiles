@@ -45,10 +45,10 @@ install_yarn () {
 }
 
 install_go_dependencies () {
-  /usr/local/go/bin/go get golang.org/x/tools/cmd/godoc
-  /usr/local/go/bin/go get golang.org/x/tools/cmd/goimports
-  /usr/local/go/bin/go get -u github.com/go-delve/delve/cmd/dlv
-  GO111MODULE=on /usr/local/go/bin/go get golang.org/x/tools/gopls@latest
+  go get golang.org/x/tools/cmd/godoc
+  go get golang.org/x/tools/cmd/goimports
+  go get -u github.com/go-delve/delve/cmd/dlv
+  GO111MODULE=on go get golang.org/x/tools/gopls@latest
 }
 
 install_go () {

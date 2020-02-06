@@ -1,6 +1,8 @@
 # misc vars
 set -gx DOTFILES (string replace /fish '' (dirname (readlink (status --current-filename))))
 set -gx color_scheme 1
+set -gx IS_OSX 0
+set -gx GOPATH (go env GOPATH)
 
 # theme configs
 set -gx theme_display_k8s_namespace no
@@ -10,7 +12,7 @@ set -gx theme_display_git yes
 set -gx theme_color_scheme terminal
 set -gx theme_display_date no
 set -gx theme_display_cmd_duration no
-set -gx IS_OSX 0
+
 
 # use ag to pipe the results to fzf, ag respects the gitignore
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
