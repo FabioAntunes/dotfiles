@@ -10,6 +10,7 @@ fi
 make_dirs () {
   mkdir -p $HOME/.local/share/nvim/undodir
   mkdir -p $HOME/.vim/undodir
+  mkdir -p $HOME/go
   mkdir -p $HOME/playground
   mkdir -p $HOME/work
 }
@@ -41,6 +42,28 @@ install_brew () {
 
 install_yarn () {
   curl -o- -L https://yarnpkg.com/install.sh | bash
+}
+
+install_go_dependencies () {
+  go get golang.org/x/tools/cmd/godoc
+  go get golang.org/x/tools/cmd/goimports
+  go get -u github.com/go-delve/delve/cmd/dlv
+  GO111MODULE=on go get golang.org/x/tools/gopls@latest
+}
+
+install_go () {
+  if [ "$GITHUB_ACTIONS" = "true" ]; then
+    # machines on Github actions already have golang installed
+    install_go_dependencies
+  else
+    filename="$(curl 'https://golang.org/VERSION?m=text').$1-amd64.tar.gz"
+    tar_archive="https://dl.google.com/go/$filename"
+    echo "Dowloading go from: $tar_archive"
+    wget $tar_archive && sudo tar -C /usr/local -xzf $filename
+    if [ $? -eq 0 ]; then
+      install_go_dependencies
+    fi
+  fi
 }
 
 install_from_brewfile () {
@@ -76,7 +99,7 @@ install_powerfonts () {
 }
 
 install_nvm () {
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
   # manually source nvm
   \. "$HOME/.nvm/nvm.sh"
   nvm install --lts
@@ -89,9 +112,11 @@ install_nvm
 install_yarn
 install_powerfonts
 if [ "$(uname)" == "Darwin" ]; then
+  DevToolsSecurity -enable
   defaults write -g InitialKeyRepeat -int 10
   defaults write -g KeyRepeat -int 2
   touch $HOME/.hushlogin
+  install_go "darwin"
   install_brew
   install_from_brewfile
 else
@@ -101,6 +126,7 @@ else
   sudo apt-add-repository -y ppa:neovim-ppa/stable
   sudo apt-get update
   sudo apt-get -y install fish vim-gtk python3 python3-dev python3-pip python3-setuptools neovim
+  install_go "linux"
 fi
 
 if command -v pip3 > /dev/null; then

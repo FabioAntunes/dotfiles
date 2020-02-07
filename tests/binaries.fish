@@ -27,3 +27,12 @@ set -l functions yolo toggle-background-color toggle-js-configs
 for function in $functions
   @test "function $function is loaded" (type -qp $function > /dev/null) $status -eq 0
 end
+
+##########################
+# Test go binaries installed
+##########################
+set -l go_binaries godoc goimports gopls dlv
+
+for go_bin in $go_binaries
+  @test "binary $go_bin installed" (command -v $go_bin > /dev/null) $status -eq 0
+end

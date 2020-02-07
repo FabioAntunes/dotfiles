@@ -1,6 +1,8 @@
 # misc vars
 set -gx DOTFILES (string replace /fish '' (dirname (readlink (status --current-filename))))
 set -gx color_scheme 1
+set -gx IS_OSX 0
+set -gx GOPATH (go env GOPATH)
 
 # theme configs
 set -gx theme_display_k8s_namespace no
@@ -10,25 +12,27 @@ set -gx theme_display_git yes
 set -gx theme_color_scheme terminal
 set -gx theme_display_date no
 set -gx theme_display_cmd_duration no
-set -gx IS_OSX 0
+
 
 # use ag to pipe the results to fzf, ag respects the gitignore
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 
-set -l brew_path /usr/local/homebrew/bin
-if test (uname -s) = 'Darwin'; and not contains $brew_path $PATH
+function add_to_path
+  if not contains $argv[1] $fish_user_paths
+    set -gx fish_user_paths $argv[1] $fish_user_paths
+  end
+end
+
+if test (uname -s) = 'Darwin'
   set -gx IS_OSX 1
-  set -gx PATH $brew_path $PATH
+  add_to_path /usr/local/homebrew/bin
 end
 
-set -l platform_tools_path ~/platform-tools
-if test -d $platform_tools_path; and not contains $platform_tools_path $PATH
-  set -gx PATH $platform_tools_path $PATH
+if test -d $HOME/platform-tools
+  add_to_path $HOME/platform-tools
 end
 
-if not contains $GOPATH/bin $PATH
-  set -gx PATH $GOPATH/bin $PATH
-end
+add_to_path $GOPATH/bin
 
 # add aws completions
 type -q aws_completer;\

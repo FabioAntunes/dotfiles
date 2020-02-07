@@ -24,7 +24,7 @@ Plug 'ap/vim-css-color'
 Plug 'tpope/vim-git'
 Plug 'dag/vim-fish'
 Plug 'elzr/vim-json'
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'branch': 'master', 'for': 'go' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'vim-pandoc/vim-pandoc' " pandoc and markdown
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -73,6 +73,9 @@ Plug 'christoomey/vim-tmux-runner'
 Plug 'FabioAntunes/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Debug highlight issues
+" Plug 'benknoble/vim-synstax'
 call plug#end()
 
 
@@ -92,6 +95,7 @@ function! Dot_set_colours(bg, error_fg, warning_fg)
   exe 'hi CocErrorSign guibg=' . a:bg . ' guifg=' . a:error_fg
   exe 'hi CocInfoSign guibg=' . a:bg . ' guifg=' . a:warning_fg
   exe 'hi CocWarningSign guibg=' . a:bg . ' guifg=' . a:warning_fg
+
 endfunction
 
 if exists('g:colors_name')
