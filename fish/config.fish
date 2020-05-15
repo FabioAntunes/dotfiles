@@ -17,6 +17,7 @@ set -gx theme_display_cmd_duration no
 # use ag to pipe the results to fzf, ag respects the gitignore
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 
+
 function add_to_path
   if not contains $argv[1] $fish_user_paths
     set -gx fish_user_paths $argv[1] $fish_user_paths
@@ -43,7 +44,9 @@ type -q aws_completer;\
 function postexec --on-event fish_postexec
   if test (count $argv) -ge 1; and test $IS_OSX -eq 1
     if string match -q -- "*brew install*" $argv;\
+      or string match -q -- "*brew untap*" $argv;\
       or string match -q -- "*brew cask install*" $argv;\
+      or string match -q -- "*brew cask uninstall*" $argv;\
       or string match -q -- "*brew remove*" $argv;\
       or string match -q -- "*brew uninstall*" $argv;
 
@@ -63,11 +66,6 @@ function postexec --on-event fish_postexec
       popd
     end
   end
-end
-
-if status --is-interactive
-  set BASE16_SHELL "$DOTFILES/base16-shell/"
-  source "$BASE16_SHELL/profile_helper.fish"
 end
 
 # The next line updates PATH for the Google Cloud SDK.

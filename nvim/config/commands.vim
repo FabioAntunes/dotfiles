@@ -2,6 +2,13 @@
 " COMMANDS
 "
 
+function! Base_16_Func(colour)
+  echom 'base16-'.a:colour
+  execute 'silent !base16-'.trim(a:colour)
+  source $HOME/.vimrc_background
+  call Load_colour_settings()
+endfunction
+
 " Ignore the filenames when doing find all
 " https://github.com/junegunn/fzf.vim/issues/346
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
@@ -15,5 +22,5 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 :command! DotVisuals vsplit $DOTFILES/nvim/config/visuals.vim
 
 :command! AleBufferToggleFixers let b:ale_fix_on_save = !get(b:, 'ale_fix_on_save', 1)
-:command! ToggleBackgroundColor let &background = ( &background == 'dark'? 'light' : 'dark' )
+:command! -nargs=1 Base16 call Base_16_Func(<f-args>)
 :command! ToggleJsConfigs call system('toggle-js-configs')

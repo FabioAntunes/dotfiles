@@ -98,9 +98,13 @@ function! Dot_set_colours(bg, error_fg, warning_fg)
 
 endfunction
 
-if exists('g:colors_name')
-  let coloursettings = '$DOTFILES/nvim/config/colours/'.g:colors_name.'.vim'
-  if !empty(glob(coloursettings))
-    execute 'source '.coloursettings
+function! Load_colour_settings()
+  if exists('g:colors_name')
+    let coloursettings = '$DOTFILES/nvim/config/colours/'.g:colors_name.'.vim'
+    if !empty(glob(coloursettings))
+      execute 'source '.coloursettings
+    endif
   endif
-endif
+endfunction
+
+call Load_colour_settings()
