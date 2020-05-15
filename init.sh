@@ -51,19 +51,45 @@ install_go_dependencies () {
   GO111MODULE=on go get golang.org/x/tools/gopls@latest
 }
 
+tar_archive () {
+  url=$1
+  path=$2
+  filename=$3
+
+  echo "Dowloading archive from: $url"
+  echo "Installing $filename in $path"
+
+  wget $url && sudo tar -C $path -xzf $filename
+}
+
 install_go () {
   if [ "$GITHUB_ACTIONS" = "true" ]; then
     # machines on Github actions already have golang installed
     install_go_dependencies
   else
     filename="$(curl 'https://golang.org/VERSION?m=text').$1-amd64.tar.gz"
-    tar_archive="https://dl.google.com/go/$filename"
-    echo "Dowloading go from: $tar_archive"
-    wget $tar_archive && sudo tar -C /usr/local -xzf $filename
+    path="/usr/local"
+    url="https://dl.google.com/go/$filename"
+
+    tar_archive $url $path $filename
+
     if [ $? -eq 0 ]; then
       install_go_dependencies
     fi
   fi
+}
+
+install_kubectx_and_kubens () {
+  os=$1
+  base_url="https://github.com/ahmetb/kubectx/releases/download/v0.9.0"
+  ctx_filename="kubectx_v0.9.0_$os_x86_64.tar.gz"
+  ctx_url="$base_url/$filename"
+  ns_filename="kubens_v0.9.0_$os_x86_64.tar.gz"
+  ns_url="$base_url/$ns_filename"
+  path="/usr/local/bin"
+
+  tar_archive $ctx_url $path $ctx_filename
+  tar_archive $ns_url $path $ns_filename
 }
 
 install_from_brewfile () {
@@ -117,6 +143,7 @@ if [ "$(uname)" == "Darwin" ]; then
   defaults write -g KeyRepeat -int 2
   touch $HOME/.hushlogin
   install_go "darwin"
+  install_kubectx_and_kubens "darwin"
   install_brew
   install_from_brewfile
 else
@@ -127,6 +154,7 @@ else
   sudo apt-get update
   sudo apt-get -y install fish vim-gtk python3 python3-dev python3-pip python3-setuptools neovim
   install_go "linux"
+  install_kubectx_and_kubens "linux"
 fi
 
 if command -v pip3 > /dev/null; then

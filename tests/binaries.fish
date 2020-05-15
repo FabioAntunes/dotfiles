@@ -1,10 +1,7 @@
 ##########################
 # Test binaries installed
 ##########################
-set -l binaries node vim nvim yarn
-if test (uname) = 'Darwin'
-  set -a binaries brew
-end
+set -l binaries node vim nvim kubectx kubectl yarn
 
 for bin in $binaries
   @test "binary $bin installed" (command -v $bin > /dev/null) $status -eq 0
