@@ -1,4 +1,5 @@
 #!/bin/bash
+os="$(uname | tr '[:upper:]' '[:lower:]')"
 
 if [ "$GITHUB_ACTIONS" = "true" ]; then
   # osx on Github actions has node installed already
@@ -67,24 +68,28 @@ install_go () {
     # machines on Github actions already have golang installed
     install_go_dependencies
   else
-    filename="$(curl 'https://golang.org/VERSION?m=text').$1-amd64.tar.gz"
+    filename="$(curl 'https://golang.org/VERSION?m=text').${os}-amd64.tar.gz"
     path="/usr/local"
     url="https://dl.google.com/go/$filename"
 
     tar_archive $url $path $filename
 
     if [ $? -eq 0 ]; then
+      PATH="$path/go/bin":$PATH
       install_go_dependencies
     fi
   fi
 }
 
-install_kubectx_and_kubens () {
-  os=$1
+install_k8s_stuff () {
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.13.6/bin/${os}/amd64/kubectl
+  chmod +x ./kubectl
+  sudo mv ./kubectl /usr/local/bin/kubectl
+
   base_url="https://github.com/ahmetb/kubectx/releases/download/v0.9.0"
-  ctx_filename="kubectx_v0.9.0_$os_x86_64.tar.gz"
-  ctx_url="$base_url/$filename"
-  ns_filename="kubens_v0.9.0_$os_x86_64.tar.gz"
+  ctx_filename="kubectx_v0.9.0_${os}_x86_64.tar.gz"
+  ctx_url="$base_url/$ctx_filename"
+  ns_filename="kubens_v0.9.0_${os}_x86_64.tar.gz"
   ns_url="$base_url/$ns_filename"
   path="/usr/local/bin"
 
@@ -132,18 +137,24 @@ install_nvm () {
   nvm alias default 'lts/*'
 }
 
+install_fzf () {
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install --all --no-bash --no-zsh
+}
+
 make_dirs
 config_git
 install_nvm
 install_yarn
 install_powerfonts
+install_go
+install_k8s_stuff
+
 if [ "$(uname)" == "Darwin" ]; then
   DevToolsSecurity -enable
   defaults write -g InitialKeyRepeat -int 10
   defaults write -g KeyRepeat -int 2
   touch $HOME/.hushlogin
-  install_go "darwin"
-  install_kubectx_and_kubens "darwin"
   install_brew
   install_from_brewfile
 else
@@ -153,9 +164,9 @@ else
   sudo apt-add-repository -y ppa:neovim-ppa/stable
   sudo apt-get update
   sudo apt-get -y install fish vim-gtk python3 python3-dev python3-pip python3-setuptools neovim
-  install_go "linux"
-  install_kubectx_and_kubens "linux"
 fi
+
+install_fzf
 
 if command -v pip3 > /dev/null; then
   # install python support for nvim

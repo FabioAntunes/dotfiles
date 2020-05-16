@@ -1,9 +1,12 @@
 FROM ubuntu:latest
 
-ENV GITHUB_ACTIONS true
-RUN apt-get update && apt-get install -y git sudo curl
+RUN apt-get update && apt-get install -y git sudo curl wget
+RUN adduser --disabled-password --gecos '' dot \
+  && adduser dot sudo \
+  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-WORKDIR /home/dotfiles
+USER dot
 
-COPY . .
+COPY --chown=dot:dot . /home/dot/dotfiles/
 
+WORKDIR /home/dot/dotfiles

@@ -19,14 +19,13 @@ set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 
 
 function add_to_path
-  if not contains $argv[1] $fish_user_paths
-    set -gx fish_user_paths $argv[1] $fish_user_paths
+  if not contains $argv[1] $PATH
+    set -gx PATH $argv[1] $PATH
   end
 end
 
 if test (uname -s) = 'Darwin'
   set -gx IS_OSX 1
-  add_to_path /usr/local/homebrew/bin
 end
 
 if test -d $HOME/platform-tools

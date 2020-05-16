@@ -1,7 +1,9 @@
 ##########################
 # Test binaries installed
 ##########################
-set -l binaries node vim nvim kubectx kubectl yarn
+set -l binaries node vim nvim kubectl kubectx yarn
+# source node
+nvm use default
 
 for bin in $binaries
   @test "binary $bin installed" (command -v $bin > /dev/null) $status -eq 0

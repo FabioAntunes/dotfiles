@@ -8,7 +8,6 @@ brew "bat"
 brew "cfssl"
 brew "diff-so-fancy"
 brew "fish"
-brew "fzf"
 brew "python", link: false
 brew "gnupg"
 brew "htop"
