@@ -33,6 +33,7 @@ if test -d $HOME/platform-tools
 end
 
 add_to_path $GOPATH/bin
+add_to_path $HOME/google-cloud-sdk/bin
 
 # add aws completions
 type -q aws_completer;\

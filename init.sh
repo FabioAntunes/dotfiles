@@ -82,7 +82,7 @@ install_go () {
 }
 
 install_k8s_stuff () {
-  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.13.6/bin/${os}/amd64/kubectl
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.12/bin/${os}/amd64/kubectl
   chmod +x ./kubectl
   sudo mv ./kubectl /usr/local/bin/kubectl
 
