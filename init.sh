@@ -38,7 +38,7 @@ config_git () {
 }
 
 install_brew () {
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
 install_yarn () {
@@ -104,7 +104,7 @@ install_from_brewfile () {
   $brew_path bundle --verbose --force --file=tilde/.Brewfile
 }
 
-set_fish_shell () {
+eet_fish_shell () {
   fish_path=$(command -v fish)
 
   if command -v fish > /dev/null; then

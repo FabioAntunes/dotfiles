@@ -8,7 +8,7 @@
 
 ## Installation
 #### Clone this repo
-First step, clone this repo, because I'm lazy and this are my dotfiles, they need to be placed in `~/playground/dotfiles`
+First step, clone this repo, because I'm lazy and these are my dotfiles, they need to be placed in `~/playground/dotfiles`
 
 ``` bash
 $ git clone https://github.com/FabioAntunes/dotfiles.git ~/playground/dotfiles --recurse-submodules
@@ -48,7 +48,7 @@ If we use the `-f/--force` it will run all the options above, but won't preserve
 The next args allows you to run the function in a granular way, feel free to combine multiple args
 
 * `-f/--force` - it will overwrite existing symlinks
-* `-s/--symlink` - create symlinks, this options will ignore already created symlinks. If a regular file already exists, it will be renamed aka backup file. Combine with the `-f/--force`
+* `-s/--symlink` - create symlinks, this option will ignore already created symlinks. If a regular file already exists, it will be renamed aka backup file. Combine with the `-f/--force`
 * `-n/--node` - install global packages.
 * `-m/--fisherman` - install fisherman and it's plugins.
 * `-v/--vimplug` - install vim and nvim Plugins.
@@ -62,7 +62,7 @@ Running this function on the terminal will toggle the symlinks for `eslint` and 
 There's also a vim command for this, doing `:ToggleJsSettings` will call `toggle-js-configs` from vim, changing `prettier` and `eslint` settings on the fly without the need to exit vim
 
 #### toggle-background-color
-Running this function will toggle between solarized light or solarized dark. It will change iterm2 color palette, fish theme and n?vim theme. This change only affects the current session, so starting a new terminal session it will default to the solarized dark. This function is useful when working outside or under direct sunlight. Solarized Light has a better contrast on this occasions.
+Running this function will toggle between solarized light or solarized dark. It will change iterm2 color palette, fish theme and n?vim theme. This change only affects the current session, so starting a new terminal session it will default to the solarized dark. This function is useful when working outside or under direct sunlight. Solarized Light has a better contrast on these occasions.
 
 There's also a vim function `ToggleBackgroundColor`, this will only change the vim theme. If you want to change iterm2 and fish theme you will need to exit vim and run `toggle-background-color`
 
