@@ -104,7 +104,7 @@ install_from_brewfile () {
   $brew_path bundle --verbose --force --file=tilde/.Brewfile
 }
 
-eet_fish_shell () {
+set_fish_shell () {
   fish_path=$(command -v fish)
 
   if command -v fish > /dev/null; then
