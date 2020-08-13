@@ -22,13 +22,13 @@ config_git () {
   git config --global alias.yolo "push origin head --no-verify --force-with-lease"
 
   # don't run if the terminal isn't interactive
-  if [[ $- == *i* ]]; then
+  if [ -t 0 ] ; then
     echo "git user name:"
-    read username
+    read name
     echo "git email:"
     read email
 
-    git config --global user.name $username
+    git config --global user.name $name
     git config --global user.email $email
   fi
 
