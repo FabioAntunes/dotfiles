@@ -110,7 +110,7 @@ set_fish_shell () {
   if command -v fish > /dev/null; then
     echo -e "\nSetting fish shell $fish_path"
     echo $fish_path | sudo tee -a /etc/shells
-    sudo chsh -s $fish_path
+    chsh -s $fish_path
 
     # start init.fish
     eval "$fish_path init.fish"

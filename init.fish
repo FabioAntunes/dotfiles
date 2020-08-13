@@ -5,7 +5,7 @@ set current_dir (dirname (realpath (status --current-filename)))
 abbr -a gout git checkout
 abbr -a g git
 abbr -a me cd $HOME/playground
-abbr -a dot cd $current_dir/dotfiles
+abbr -a dot cd $current_dir
 abbr -a work cd $HOME/work
 
 function add_to_path
