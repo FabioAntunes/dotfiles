@@ -86,10 +86,10 @@ install_k8s_stuff () {
   chmod +x ./kubectl
   sudo mv ./kubectl /usr/local/bin/kubectl
 
-  base_url="https://github.com/ahmetb/kubectx/releases/download/v0.9.0"
-  ctx_filename="kubectx_v0.9.0_${os}_x86_64.tar.gz"
+  base_url="https://github.com/ahmetb/kubectx/releases/download/v0.9.1"
+  ctx_filename="kubectx_v0.9.1_${os}_x86_64.tar.gz"
   ctx_url="$base_url/$ctx_filename"
-  ns_filename="kubens_v0.9.0_${os}_x86_64.tar.gz"
+  ns_filename="kubens_v0.9.1_${os}_x86_64.tar.gz"
   ns_url="$base_url/$ns_filename"
   path="/usr/local/bin"
 
