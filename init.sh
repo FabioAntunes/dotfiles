@@ -45,6 +45,11 @@ install_yarn () {
   curl -o- -L https://yarnpkg.com/install.sh | bash
 }
 
+install_aws () {
+  curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+  sudo installer -pkg AWSCLIV2.pkg -target /
+}
+
 install_go_dependencies () {
   go get golang.org/x/tools/cmd/godoc
   go get golang.org/x/tools/cmd/goimports
@@ -149,6 +154,7 @@ install_yarn
 install_powerfonts
 install_go
 install_k8s_stuff
+install_aws
 
 if [ "$(uname)" == "Darwin" ]; then
   DevToolsSecurity -enable
