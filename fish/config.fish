@@ -1,6 +1,7 @@
 # misc vars
 set -gx DOTFILES (string replace /fish '' (dirname (readlink (status --current-filename))))
 set -gx color_scheme 1
+set -gx fish_emoji_width 2
 set -gx IS_OSX 0
 set -gx GOPATH (go env GOPATH)
 
