@@ -27,10 +27,10 @@ function yolo -d "All your dotfiles are belong to us"
         set has_force 1
     end
 
-    function install_fisherman
-        curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+    function install_fisher
+        curl -sL git.io/fisher | source && fisher install jorgebucaran/fisher
         # install fisher dependencies
-        fisher
+        fisher update
     end
 
     function install_node_packages
@@ -156,7 +156,7 @@ function yolo -d "All your dotfiles are belong to us"
 
     if test -n "$_flag_m"
         or not set -q functions_list[1]
-        install_fisherman
+        install_fisher
     end
 
     if test -n "$_flag_v"

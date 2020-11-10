@@ -21,7 +21,7 @@ end
 ##########################
 # Test loaded functions
 ##########################
-set -l functions yolo toggle-background-color toggle-js-configs
+set -l functions yolo toggle-js-configs
 
 for function in $functions
   @test "function $function is loaded" (type -qp $function > /dev/null) $status -eq 0

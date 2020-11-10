@@ -39,7 +39,7 @@ This is the main function that allows us run all the commands related to dotfile
 If no args are passed to the `yolo` function, all the options will be executed in this order:
 
 1. create symlinks, any existing symlinks will be preserved. 
-2. install fisherman
+2. install fisher
 3. install vim plug Plugins
 4. install global npm packages 
 
@@ -50,7 +50,7 @@ The next args allows you to run the function in a granular way, feel free to com
 * `-f/--force` - it will overwrite existing symlinks
 * `-s/--symlink` - create symlinks, this option will ignore already created symlinks. If a regular file already exists, it will be renamed aka backup file. Combine with the `-f/--force`
 * `-n/--node` - install global packages.
-* `-m/--fisherman` - install fisherman and it's plugins.
+* `-m/--fisher` - install fisher and it's plugins.
 * `-v/--vimplug` - install vim and nvim Plugins.
 
 
@@ -60,12 +60,6 @@ At the end it will output all the symlinks created, any errors creating symlinks
 Running this function on the terminal will toggle the symlinks for `eslint` and `prettier` created on our `~/` with settings with no semicolon or force semicolon.
 
 There's also a vim command for this, doing `:ToggleJsSettings` will call `toggle-js-configs` from vim, changing `prettier` and `eslint` settings on the fly without the need to exit vim
-
-#### toggle-background-color
-Running this function will toggle between solarized light or solarized dark. It will change iterm2 color palette, fish theme and n?vim theme. This change only affects the current session, so starting a new terminal session it will default to the solarized dark. This function is useful when working outside or under direct sunlight. Solarized Light has a better contrast on these occasions.
-
-There's also a vim function `ToggleBackgroundColor`, this will only change the vim theme. If you want to change iterm2 and fish theme you will need to exit vim and run `toggle-background-color`
-
 
 ### Post install
 All the paths should direct you to the dotfiles! There's a `post_exec` function inside the `config.fish`, that listens for any `brew install` and `brew cask install`. Whenever that happens, a Brewfile is dumped.
@@ -79,7 +73,6 @@ My `<leader>` is the `,` and I use `fzf`for fuzzy searching with `ag`
 
 Command utils:
 * `AleBufferToggleFixers` - disable ale fixers for the current buffer
-* `ToggleBackgroundColor` - toggle between dark and light background
 * `ToggleJsSettings` - toggle eslint and prettier settings between no semicolon or semicolon
 * `W` `WA` `Wa` `WQ` `Wq` `Q` `QA` `Qa` `UP` `Up` `X` remapped different saving/exit commands to different cases
 
