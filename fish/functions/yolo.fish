@@ -28,7 +28,7 @@ function yolo -d "All your dotfiles are belong to us"
     end
 
     function install_fisher
-        curl -sL git.io/fisher | source && fisher install jorgebucaran/fisher
+        curl -sL git.io/fisher | source
         # install fisher dependencies
         fisher update
     end

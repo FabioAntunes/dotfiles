@@ -16,7 +16,6 @@ end
 
 #modify $PATH
 add_to_path /usr/local/go/bin
-add_to_path /usr/local/go/bin
 add_to_path $HOME/.yarn/bin
 
 if test (uname -s) = 'Darwin'
