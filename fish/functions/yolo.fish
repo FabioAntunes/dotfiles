@@ -150,7 +150,6 @@ function yolo -d "All your dotfiles are belong to us"
     if test -n "$_flag_s"
         or not set -q functions_list[1]
         create_symlinks
-        ls -la ~/.config/fish
     end
 
     if test -n "$_flag_m"

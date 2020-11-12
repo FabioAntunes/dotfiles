@@ -21,7 +21,7 @@ end
 set -l basepath $HOME/.config/fish
 set -l dot_basepath $dir/fish
 
-test_symlink fishfile $basepath $dot_basepath
+test_symlink fish_plugins $basepath $dot_basepath
 test_symlink config.fish $basepath $dot_basepath
 
 ##########################
@@ -31,7 +31,6 @@ set -l basepath $HOME/.config/fish/functions
 set -l dot_basepath $dir/fish/functions
 
 test_symlink root.fish $basepath $dot_basepath
-test_symlink toggle-background-color.fish $basepath $dot_basepath
 test_symlink toggle-js-configs.fish $basepath $dot_basepath
 test_symlink yolo.fish $basepath $dot_basepath
 
