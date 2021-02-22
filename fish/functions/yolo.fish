@@ -6,10 +6,9 @@ function yolo -d "All your dotfiles are belong to us"
     set -l options $options (fish_opt --short=s --long=symlink)
     set -l options $options (fish_opt --short=v --long=vimplug)
     set -l options $options (fish_opt --short=c --long=copy)
-    set -l options $options (fish_opt --short=b --long=brew)
     argparse $options -- $argv
 
-    set -gx functions_list $_flag_n $_flag_m $_flag_s $_flag_v $_flag_c $_flag_b
+    set -gx functions_list $_flag_n $_flag_m $_flag_s $_flag_v $_flag_c
     set -gx keys 'fish' 'nvim' 'vim' 'iterm2' 'ssh' 'tilde' 'yamllint'
     set -gx paths ~/.config/fish ~/.config/nvim ~/.vim ~/Library/Application\ Support/iTerm2/DynamicProfiles ~/.ssh ~ ~/.config/yamllint
     set -e symlinks
@@ -46,12 +45,6 @@ function yolo -d "All your dotfiles are belong to us"
           vim +PlugInstall +qall
           nvim +PlugInstall +qall
         end
-    end
-
-    function install_brewfile
-      brew update
-      echo "Installing brew dependencies, it will take 💩💩💩 loads of time. Time for a ☕️"
-      brew bundle --global --verbose
     end
 
     function copy_files
@@ -177,10 +170,5 @@ function yolo -d "All your dotfiles are belong to us"
     if test -n "$_flag_n"
         or not set -q functions_list[1]
         install_node_packages
-    end
-
-    if test -n "$_flag_b"
-        or not set -q functions_list[1]
-        install_brewfile
     end
 end
