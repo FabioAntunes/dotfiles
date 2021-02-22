@@ -84,10 +84,10 @@ function yolo -d "All your dotfiles are belong to us"
 
         set files (ls -A $src_path)
         for file in $files
-            set src_file "$src_path/$file"
-            set dist_file "$dist_path/$file"
+            set src_file $src_path'/'$file
+            set dist_file $dist_path'/'$file
             if string match -q -- "*.vim/init.vim" $dist_file
-                set dist_file "$dist_path/vimrc"
+                set dist_file $dist_path'/vimrc'
             end
 
             if string match -q -- '*noop*' $file
@@ -99,7 +99,7 @@ function yolo -d "All your dotfiles are belong to us"
                 iterate $src_file $dist_file
             else if test -e $dist_file
                 and not test -L $dist_file
-                set backup_name (string join '' $dist_file '_backup_' (random))
+                set backup_name $dist_file'_backup_'(random)
                 mv $dist_file $backup_name
                 if test $status -eq 0
                     set backups $backups "$dist_file ➡️  $backup_name"
@@ -118,7 +118,7 @@ function yolo -d "All your dotfiles are belong to us"
     function create_symlinks
         for key in $keys
             if set -l index (contains -i -- $key $keys)
-                set src_dir "$dir/$key"
+                set src_dir $dir'/'$key
                 iterate $src_dir $paths[$index]
             end
         end

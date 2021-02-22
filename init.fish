@@ -64,9 +64,11 @@ yolo -s
 ####################
 ### brew bundle  ###
 ####################
-brew update
-echo "Installing brew dependencies, it will take 💩💩💩 loads of time. Time for a ☕️"
-brew bundle --global --verbose
+if [ (uname) = "Darwin" ]
+  brew update
+  echo "Installing brew dependencies, it will take 💩💩💩 loads of time. Time for a ☕️"
+  brew bundle --global --verbose
+end
 
 ####################
 ### post install ###
@@ -112,15 +114,15 @@ else
   end
 end
 
-curl -LO (string join "https://storage.googleapis.com/kubernetes-release/release/v1.16.12/bin/" $os "/amd64/kubectl")
+curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.16.12/bin/'$os'/amd64/kubectl'
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 
 set base_url "https://github.com/ahmetb/kubectx/releases/download/v0.9.1"
-set ctx_filename (string join "kubectx_v0.9.1_" $os "_x86_64.tar.gz")
-set ctx_url "$base_url/$ctx_filename"
-set ns_filename (string join "kubens_v0.9.1_" $os "_x86_64.tar.gz")
-set ns_url "$base_url/$ns_filename"
+set ctx_filename 'kubectx_v0.9.1_'$os'_x86_64.tar.gz'
+set ctx_url $base_url'/'$ctx_filename
+set ns_filename 'kubens_v0.9.1_'$os'_x86_64.tar.gz'
+set ns_url $base_url'/'$ns_filename
 set destination_path "/usr/local/bin"
 
 tar_archive $ctx_url $destination_path $ctx_filename
