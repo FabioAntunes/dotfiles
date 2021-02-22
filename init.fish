@@ -59,6 +59,6 @@ add_to_path $HOME/.yarn/bin
 source fish/functions/yolo.fish
 yolo
 
-fish post-install.fish
+fish ./post-install.fish
 
 
