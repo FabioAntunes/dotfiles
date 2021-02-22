@@ -36,7 +36,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " enhanced quickfix window
 Plug 'romainl/vim-qf'
 " Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Split and join lines
 Plug 'AndrewRadev/splitjoin.vim'

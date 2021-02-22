@@ -3,7 +3,9 @@ set -gx DOTFILES (string replace /fish '' (dirname (readlink (status --current-f
 set -gx color_scheme 1
 set -gx fish_emoji_width 2
 set -gx IS_OSX 0
-set -gx GOPATH (go env GOPATH)
+if type -q go
+  set -gx GOPATH (go env GOPATH)
+end
 
 # theme configs
 set -gx theme_display_k8s_namespace no
