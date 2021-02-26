@@ -20,6 +20,9 @@ config_git () {
   # although this file doesn't exist, yet, git doesn't seem to be bothered by that
   git config --global core.excludesfile $HOME/.gitignore_global
   git config --global alias.yolo "push origin head --no-verify --force-with-lease"
+  if [ "$GITHUB_ACTIONS" != "true" ]; then
+    git remote set-url origin git@github.com:FabioAntunes/dotfiles.git
+  fi
 
   # don't run if the terminal isn't interactive
   if [ -t 0 ] ; then
