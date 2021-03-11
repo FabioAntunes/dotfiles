@@ -15,7 +15,7 @@ end
 set -l packages bass fishtape
 
 for package in $packages
-  @test "fisher package $package installed" (type -qp $package > /dev/null) $status -eq 0
+  @test "fisher package $package installed" (type -p $package > /dev/null) $status -eq 0
 end
 
 ##########################
@@ -24,7 +24,7 @@ end
 set -l functions yolo toggle-js-configs
 
 for function in $functions
-  @test "function $function is loaded" (type -qp $function > /dev/null) $status -eq 0
+  @test "function $function is loaded" (type -p $function > /dev/null) $status -eq 0
 end
 
 ##########################
