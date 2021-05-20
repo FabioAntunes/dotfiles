@@ -13,6 +13,7 @@ set current_dir (dirname (realpath (status --current-filename)))
 #create abbreviations
 abbr -a gout git checkout
 abbr -a g git
+abbr -a k kubectl
 abbr -a me cd $HOME/playground
 abbr -a dot cd $current_dir
 abbr -a work cd $HOME/work
