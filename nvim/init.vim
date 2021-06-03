@@ -79,8 +79,9 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 
+let mapleader=" "
 " load configs
-runtime! config/*.vim
+" runtime! config/*.vim
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256

@@ -15,7 +15,7 @@ brew "htop"
 brew "jq"
 brew "kind"
 brew "libpq", link: true
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "netcat"
 brew "p7zip"
 brew "python@3.9"
