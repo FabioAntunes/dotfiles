@@ -97,6 +97,34 @@ gls.left[2] = {
 	},
 }
 
+local function file_with_icons()
+	local function buffer_is_readonly()
+		if vim.bo.filetype == "help" then
+			return false
+		end
+		return vim.bo.readonly
+	end
+
+	local file = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+
+	if vim.fn.empty(file) == 1 then
+		return ""
+	end
+
+	modified_icon = "ﰂ"
+	readonly_icon = ""
+
+	if buffer_is_readonly() then
+		file = file .. " " .. readonly_icon
+	end
+
+	if vim.bo.modifiable and vim.bo.modified then
+		file = file .. " " .. modified_icon
+	end
+
+	return " " .. file .. " "
+end
+
 gls.left[3] = {
 	FileName = {
 		provider = function()
@@ -106,7 +134,7 @@ gls.left[3] = {
 				fgColor = getBase16Scheme().base08
 			end
 			highlight({ name = "GalaxyFileName", fgColor = fgColor, bgColor = getBase16Scheme().base00, gui = "bold" })
-			return provider.get_current_file_name("ﰂ")
+			return file_with_icons()
 		end,
 		condition = condition.buffer_not_empty,
 		-- separator = "  ",
