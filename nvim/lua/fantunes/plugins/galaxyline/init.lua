@@ -67,19 +67,24 @@ gls.left[1] = {
 	ViMode = {
 		provider = function()
 			local mode = getMode()
+			local length = "short"
+			if condition.hide_in_width() then
+				length = "long"
+			end
+
 			local alias = {
-				n = "NORMAL",
-				i = "INSERT",
-				c = "COMMAND",
-				v = "VISUAL",
-				V = "VISUAL LINE",
-				VB = "V-BLOCK",
-				r = "REPLACE",
+				n = { long = "NORMAL", short = "N" },
+				i = { long = "INSERT", short = "I" },
+				c = { long = "COMMAND", short = "C" },
+				v = { long = "VISUAL", short = "V" },
+				V = { long = "V-LINE", short = "VL" },
+				VB = { long = "V-BLOCK", short = "VB" },
+				r = { long = "REPLACE", short = "R" },
 			}
 			local modeColor = getModeColor()
 			highlight({ name = "GalaxyViMode", fgColor = getBase16Scheme().base07, bgColor = modeColor, gui = "bold" })
 
-			return "  " .. alias[mode] .. " "
+			return "  " .. alias[mode][length] .. " "
 		end,
 		-- separator = "  ",
 		separator = "  ",
@@ -97,7 +102,24 @@ gls.left[2] = {
 	},
 }
 
-local function file_with_icons()
+function shortenPath(s)
+	splitPath = {}
+	result = {}
+	for match in (s .. "/"):gmatch("(.-)" .. "/") do
+		table.insert(splitPath, match)
+	end
+
+	filename = table.remove(splitPath)
+	parentDir = table.remove(splitPath)
+	for i, folder in ipairs(splitPath) do
+		table.insert(result, string.sub(folder, 1, 1))
+	end
+	table.insert(result, parentDir)
+	table.insert(result, filename)
+	return table.concat(result, "/")
+end
+
+local function file_with_icons(short)
 	local function buffer_is_readonly()
 		if vim.bo.filetype == "help" then
 			return false
@@ -106,6 +128,13 @@ local function file_with_icons()
 	end
 
 	local file = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+	if short or not condition.hide_in_width() then
+		file = vim.fn.expand("%:t")
+	end
+
+	if string.len(file) > 25 then
+		file = shortenPath(file)
+	end
 
 	if vim.fn.empty(file) == 1 then
 		return ""
@@ -128,7 +157,6 @@ end
 gls.left[3] = {
 	FileName = {
 		provider = function()
-			local provider = require("galaxyline.provider_fileinfo")
 			local fgColor = getBase16Scheme().base07
 			if vim.bo.modified then
 				fgColor = getBase16Scheme().base08
@@ -137,113 +165,108 @@ gls.left[3] = {
 			return file_with_icons()
 		end,
 		condition = condition.buffer_not_empty,
-		-- separator = "  ",
-		separator = " ",
-		separator_highlight = { getBase16Color("base00"), getBase16Color("base01") },
-		-- separator_highlight = { "NONE", getBase16Color("base01") },
 		highlight = "GalaxyFileName",
 	},
 }
 
 gls.left[4] = {
+	FileSeparator = {
+		provider = function()
+			return "  "
+		end,
+		condition = function()
+			return condition.check_git_workspace() and condition.hide_in_width()
+		end,
+		highlight = { getBase16Color("base00"), getBase16Color("base01") },
+	},
+}
+
+gls.left[5] = {
 	GitBranch = {
 		provider = function()
 			local vcs = require("galaxyline.provider_vcs")
 			local branch_name = vcs.get_git_branch()
-			if string.len(branch_name) > 28 then
+			if branch_name and string.len(branch_name) > 28 then
 				return string.sub(branch_name, 1, 25) .. "..."
 			end
-			return branch_name .. " "
+			return branch_name
 		end,
 		icon = "  ",
-		condition = condition.check_git_workspace,
-		--separator = "   ",
-		--separator_highlight = function() return { getBase16Scheme().base03, getBase16Color("base01") } end,
+		condition = function()
+			return condition.check_git_workspace() and condition.hide_in_width()
+		end,
 		separator = "  ",
 		separator_highlight = { "NONE", getBase16Color("base01") },
 		highlight = { getBase16Color("base07"), getBase16Color("base01"), "bold" },
 	},
 }
 
-gls.left[5] = {
+gls.left[6] = {
 	DiffAdd = {
 		provider = "DiffAdd",
-		condition = checkwidth,
+		condition = condition.hide_in_width,
 		icon = " ",
 		highlight = { getBase16Color("base0B"), getBase16Color("base01") },
 	},
 }
-gls.left[6] = {
+gls.left[7] = {
 	DiffModified = {
 		provider = "DiffModified",
-		condition = checkwidth,
+		condition = condition.hide_in_width,
 		icon = " ",
 		highlight = { getBase16Color("base0A"), getBase16Color("base01") },
 	},
 }
-gls.left[7] = {
+gls.left[8] = {
 	DiffRemove = {
 		provider = "DiffRemove",
-		condition = checkwidth,
+		condition = condition.hide_in_width,
 		icon = " ",
 		highlight = { getBase16Color("base08"), getBase16Color("base01") },
 	},
 }
 
-gls.left[8] = {
+gls.left[9] = {
 	LeftEnd = {
 		provider = function()
 			return " "
 		end,
+		condition = condition.hide_in_width,
 		highlight = { getBase16Color("base01"), getBase16Color("base00") },
 	},
 }
 
--- gls.left[2] = {
---   LineInfo = {
---     provider = 'LineColumn',
---     separator = ' ',
---     separator_highlight = {'NONE',colors.bg},
---     highlight = {colors.fg,colors.bg},
---   },
--- }
-
--- gls.left[4] = {
---   PerCent = {
---     provider = 'LinePercent',
---     separator = ' ',
---     separator_highlight = {'NONE',colors.bg},
---     highlight = {colors.fg,colors.bg,'bold'},
---   }
--- }
-
-gls.left[9] = {
+gls.left[10] = {
 	DiagnosticError = {
 		provider = "DiagnosticError",
 		icon = "  ",
+		condition = condition.hide_in_width,
 		highlight = { getBase16Color("base08"), getBase16Color("base00") },
 	},
 }
-gls.left[10] = {
+gls.left[11] = {
 	DiagnosticWarn = {
 		provider = "DiagnosticWarn",
 		icon = "  ",
+		condition = condition.hide_in_width,
 		highlight = { getBase16Color("base0A"), getBase16Color("base00") },
 	},
 }
 
-gls.left[11] = {
+gls.left[12] = {
 	DiagnosticHint = {
 		provider = "DiagnosticHint",
 		icon = "  ",
+		condition = condition.hide_in_width,
 		highlight = { getBase16Color("base0C"), getBase16Color("base00") },
 	},
 }
 
-gls.left[12] = {
+gls.left[13] = {
 	DiagnosticInfo = {
 		provider = "DiagnosticInfo",
 		icon = "  ",
+		condition = condition.hide_in_width,
 		highlight = { getBase16Color("base0D"), getBase16Color("base00") },
 	},
 }
@@ -268,15 +291,23 @@ gls.right[2] = {
 	},
 }
 
-gls.right[3] = {
+gls.right[2] = {
+	FileFormatSeparator = {
+		provider = function()
+			return " "
+		end,
+		condition = condition.hide_in_width,
+	},
+}
+
+gls.right[4] = {
 	LineInfo = {
 		provider = "LineColumn",
-		separator = "  ",
-		separator_highlight = { "NONE", getBase16Color("base01") },
+		icon = " ",
 		highlight = { getBase16Color("base07"), getBase16Color("base0C"), "bold" },
 	},
 }
-gls.right[4] = {
+gls.right[5] = {
 	PerCent = {
 		provider = "LinePercent",
 		separator = "|",
@@ -285,7 +316,7 @@ gls.right[4] = {
 	},
 }
 
-gls.right[5] = {
+gls.right[6] = {
 	EndRight = {
 		provider = function()
 			return " ▊"
@@ -299,21 +330,39 @@ gls.short_line_left[1] = {
 		provider = "FileTypeName",
 		separator = " ",
 		separator_highlight = { "NONE", getBase16Color("base00") },
-		highlight = { colors.blue, colors.bg, "bold" },
+		highlight = { getBase16Color("base0D"), getBase16Color("base00"), "bold" },
 	},
 }
 
 gls.short_line_left[2] = {
 	SFileName = {
-		provider = "SFileName",
+		provider = function()
+			local short_list = require("galaxyline").short_line_list
+			for _, v in ipairs(short_list) do
+				if v == vim.bo.filetype then
+					return ""
+				end
+			end
+			local fgColor = getBase16Scheme().base07
+			if vim.bo.modified then
+				fgColor = getBase16Scheme().base08
+			end
+			highlight({
+				name = "ShortGalaxyFileName",
+				fgColor = fgColor,
+				bgColor = getBase16Scheme().base00,
+				gui = "bold",
+			})
+			return file_with_icons(true)
+		end,
 		condition = condition.buffer_not_empty,
-		highlight = { colors.fg, colors.bg, "bold" },
+		highlight = "ShortGalaxyFileName",
 	},
 }
 
 gls.short_line_right[1] = {
 	BufferIcon = {
 		provider = "BufferIcon",
-		highlight = { colors.fg, colors.bg },
+		highlight = { getBase16Color("base07"), getBase16Color("base00"), "bold" },
 	},
 }

@@ -80,7 +80,7 @@ local relativePath = function(src, dst)
 	return result:sub(1, -2)
 end
 
--- strip any extensions from some file types as tehy are not useful
+-- strip any extensions from some file types as they are not useful
 local stripExtensions = function(path)
 	path = string.gsub(path, "%.tsx?$", "")
 	path = string.gsub(path, "%.jsx?$", "")

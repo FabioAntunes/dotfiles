@@ -5,14 +5,14 @@ set -l dir (string replace /tests '' (cd (dirname (status -f)); and pwd))
 
 
 function test_symlink
-  set -l filename $argv[1]
-  set -l basepath $argv[2]
-  set -l dot_basepath $argv[3]
-  set -q argv[4]; and set -l dot_filename $argv[4]; or set -l dot_filename $filename
+    set -l filename $argv[1]
+    set -l basepath $argv[2]
+    set -l dot_basepath $argv[3]
+    set -q argv[4]; and set -l dot_filename $argv[4]; or set -l dot_filename $filename
 
 
-  @test "$filename is a symlink"  -L $basepath/$filename
-  @test "$filename has the correct path"  (realpath $basepath/$filename) = $dot_basepath/$dot_filename
+    @test "$filename is a symlink" -L $basepath/$filename
+    @test "$filename has the correct path" (realpath $basepath/$filename) = $dot_basepath/$dot_filename
 end
 
 ##########################
@@ -51,10 +51,9 @@ test_symlink aws-okta.fish $basepath $dot_basepath
 set -l nvim_path $HOME/.config/nvim
 set -l basepath $HOME/.vim
 set -l n_basepath $nvim_path
-set -l dot_basepath $dir/nvim
 
-test_symlink vimrc $basepath $dot_basepath init.vim
-test_symlink init.vim $n_basepath $dot_basepath
+test_symlink vimrc $basepath $dir/vim init.vim
+test_symlink init.lua $n_basepath $dir/nvim
 
 ##########################
 # Test .vim/UltiSnips
@@ -62,10 +61,9 @@ test_symlink init.vim $n_basepath $dot_basepath
 ##########################
 set -l basepath $HOME/.vim/UltiSnips
 set -l nvim_basepath $nvim_path/UltiSnips
-set -l dot_basepath $dir/nvim/UltiSnips
 
-test_symlink javascript.snippets $basepath $dot_basepath
-test_symlink javascript.snippets $nvim_basepath $dot_basepath
+test_symlink javascript.snippets $basepath $dir/vim/UltiSnips
+test_symlink javascript.snippets $nvim_basepath $dir/nvim/UltiSnips
 
 ##########################
 # Test .vim/after/ftplugin
@@ -73,18 +71,16 @@ test_symlink javascript.snippets $nvim_basepath $dot_basepath
 ##########################
 set -l basepath $HOME/.vim/after/ftplugin
 set -l nvim_basepath $nvim_path/after/ftplugin
-set -l dot_basepath $dir/nvim/after/ftplugin
 
-test_symlink javascript.vim $basepath $dot_basepath
-test_symlink markdown.vim $basepath $dot_basepath
+test_symlink javascript.vim $basepath $dir/vim/after/ftplugin
+test_symlink markdown.vim $basepath $dir/nvim/after/ftplugin
 
 ##########################
 # Test .vim/config/colours
 # Test .config/nvim/config/colours
 ##########################
 set -l basepath $HOME/.vim/config/colours
-set -l nvim_basepath $nvim_path/config/colours
-set -l dot_basepath $dir/nvim/config/colours
+set -l dot_basepath $dir/vim/config/colours
 
 test_symlink base16-nord.vim $basepath $dot_basepath
 test_symlink base16-oceanicnext.vim $basepath $dot_basepath
@@ -96,7 +92,6 @@ test_symlink base16-solarflare.vim $basepath $dot_basepath
 # Test .config/nvim/config/
 ##########################
 set -l basepath $HOME/.vim/config
-set -l nvim_basepath $nvim_path/config
 set -l dot_basepath $dir/nvim/config
 
 test_symlink asimple.vim $basepath $dot_basepath
@@ -137,10 +132,9 @@ test_symlink config $basepath $dot_basepath
 ##########################
 # Test iterm2
 ##########################
-if test (uname) = 'Darwin'
-  set -l basepath $HOME/Library/Application\ Support/iTerm2/DynamicProfiles
-  set -l dot_basepath $dir/iterm2
+if test (uname) = Darwin
+    set -l basepath $HOME/Library/Application\ Support/iTerm2/DynamicProfiles
+    set -l dot_basepath $dir/iterm2
 
-  test_symlink amaster.json $basepath $dot_basepath
+    test_symlink amaster.json $basepath $dot_basepath
 end
-
