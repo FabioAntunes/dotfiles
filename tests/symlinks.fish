@@ -73,7 +73,7 @@ set -l basepath $HOME/.vim/after/ftplugin
 set -l nvim_basepath $nvim_path/after/ftplugin
 
 test_symlink javascript.vim $basepath $dir/vim/after/ftplugin
-test_symlink markdown.vim $basepath $dir/nvim/after/ftplugin
+test_symlink markdown.vim $basepath $dir/vim/after/ftplugin
 
 ##########################
 # Test .vim/config/colours
@@ -92,7 +92,7 @@ test_symlink base16-solarflare.vim $basepath $dot_basepath
 # Test .config/nvim/config/
 ##########################
 set -l basepath $HOME/.vim/config
-set -l dot_basepath $dir/nvim/config
+set -l dot_basepath $dir/vim/config
 
 test_symlink asimple.vim $basepath $dot_basepath
 test_symlink autocmds.vim $basepath $dot_basepath
