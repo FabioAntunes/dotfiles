@@ -38,7 +38,7 @@ syntax sync minlines=256
 " General settings
 "
 
-let mapleader=","
+let mapleader=" "
 noremap \ ,
 
 " Stop Vim dying if there's massively long lines.

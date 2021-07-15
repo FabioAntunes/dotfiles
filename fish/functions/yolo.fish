@@ -38,12 +38,10 @@ function yolo -d "All your dotfiles are belong to us"
     function install_vim_plug
         set plug_url https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs $plug_url
-        curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs $plug_url
 
         #install Plugins for vim and neovim
         if status --is-interactive; and [ "$GITHUB_ACTIONS" != "true" ]
           vim +PlugInstall +qall
-          nvim +PlugInstall +qall
         end
     end
 
