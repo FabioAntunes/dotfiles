@@ -74,7 +74,7 @@ lspconfig.vimls.setup({ on_attach = on_attach })
 
 -- JSON lsp
 lspconfig.jsonls.setup({
-  on_attach = on_attach,
+  on_attach = on_attach_without_format,
   settings = {
     json = {
       -- Schemas https://www.schemastore.org
@@ -143,7 +143,7 @@ lspconfig.efm.setup({
   root_dir = lspconfig.util.root_pattern("yarn.lock", "package.json", ".git"),
   filetypes = vim.tbl_keys(languages),
   init_options = { documentFormatting = true, codeAction = true },
-  settings = { languages = languages, version = 2, log_level = 1, log_file = vim.fn.expand("~/efm.log") },
+  settings = { languages = languages, log_level = 1, log_file = vim.fn.expand("~/efm.log") },
   on_attach = on_attach,
 })
 

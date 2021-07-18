@@ -3,9 +3,9 @@ function toggle-js-configs
 
   if test (string join '' $basePath '.eslintrc.js') = (readlink ~/.eslintrc.js)
     ln -Fs (string join '' $basePath '.eslintrc-semi-noop.js') ~/.eslintrc.js
-    ln -Fs (string join '' $basePath '.prettierrc-semi-noop') ~/.prettierrc
+    ln -Fs (string join '' $basePath '.prettierrc-semi-noop.json') ~/.prettierrc.json
   else
     ln -Fs (string join '' $basePath '.eslintrc.js') ~/.eslintrc.js
-    ln -Fs (string join '' $basePath '.prettierrc') ~/.prettierrc
+    ln -Fs (string join '' $basePath '.prettierrc.json') ~/.prettierrc.json
   end
 end
