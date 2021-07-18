@@ -1,1 +1,1 @@
-autocmd BufRead,BufNewFile *.tf set filetype=hcl
+autocmd BufRead,BufNewFile *.tf set filetype=terraform

@@ -3,4 +3,4 @@ require("fantunes.options")
 require("fantunes.packer")
 require("fantunes.keymaps")
 
-vim.cmd('colorscheme base16-solarflare')
+require("fantunes.plugins.base16.schemes").load('base16-solarflare')

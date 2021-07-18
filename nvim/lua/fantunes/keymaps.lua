@@ -43,9 +43,9 @@ map("n", "n", "nzz", mapOpts)
 map("n", "N", "Nzz", mapOpts)
 
 -- make copy/paste from system clip easier
-map("v", "<Leader>8 ", '"*y', mapOpts)
-map("v", "<Leader>9 ", '"*p', mapOpts)
-map("n", "<Leader>8 ", '"*p', mapOpts)
+map("v", "<Leader>8", '"*y', mapOpts)
+map("v", "<Leader>9", '"*p', mapOpts)
+map("n", "<Leader>8", '"*p', mapOpts)
 
 -- move blocks and visual blocks up and down
 map("n", "∆", ":m .+1<CR>==", mapOpts)
