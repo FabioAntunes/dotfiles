@@ -24,6 +24,7 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
+    vim.cmd([[command! LspFormat lua vim.lsp.buf.formatting_sync()]])
     vim.cmd([[augroup lsp_formatting]])
     vim.cmd([[autocmd!]])
     vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
@@ -31,27 +32,29 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local on_attach_without_format = function(client, bufnr)
+  -- This makes sure we don't use the LSP for formatting
+  -- example: use tsserver for lsp but prettier for formatting
+  client.resolved_capabilities.document_formatting = false
+
+  on_attach(client, bufnr)
+end
 -- Tsserver setup
 lspconfig.tsserver.setup({
   root_dir = lspconfig.util.root_pattern("yarn.lock", ".git", "package.json"),
-  on_attach = function(client, bufnr)
-    -- This makes sure tsserver is not used for formatting (I prefer prettier)
-    client.resolved_capabilities.document_formatting = false
-
-    on_attach(client, bufnr)
-  end,
+  on_attach = on_attach_without_format,
   settings = { documentFormatting = false },
 })
 
 -- Lua setup
 
-local pathDotfiles = "$DOTFILES/lua-language-server"
+local pathDotfiles = vim.fn.expand("$DOTFILES/lua-language-server")
 local luadev = require("lua-dev").setup({
   lspconfig = {
     cmd = {
-      vim.fn.expand(pathDotfiles .. "/bin/macOs/lua-language-server"),
+      pathDotfiles .. "/bin/macOs/lua-language-server",
       "-E",
-      vim.fn.expand(pathDotfiles .. "/main.lua"),
+      pathDotfiles .. "/main.lua",
     },
     on_attach = on_attach,
   },
@@ -60,15 +63,11 @@ lspconfig.sumneko_lua.setup(luadev)
 
 -- Terraform setup
 lspconfig.terraformls.setup({
-  on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = true
-
-    on_attach(client, bufnr)
-  end,
+  on_attach = on_attach,
 })
--- lspconfig.tflint.setup({
---   on_attach = on_attach,
--- })
+lspconfig.tflint.setup({
+  on_attach = on_attach,
+})
 
 -- Vim lsp
 lspconfig.vimls.setup({ on_attach = on_attach })
@@ -144,7 +143,7 @@ lspconfig.efm.setup({
   root_dir = lspconfig.util.root_pattern("yarn.lock", "package.json", ".git"),
   filetypes = vim.tbl_keys(languages),
   init_options = { documentFormatting = true, codeAction = true },
-  settings = { languages = languages, log_level = 1, log_file = "~/efm.log" },
+  settings = { languages = languages, version = 2, log_level = 1, log_file = vim.fn.expand("~/efm.log") },
   on_attach = on_attach,
 })
 

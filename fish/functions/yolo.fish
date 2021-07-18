@@ -34,7 +34,7 @@ function yolo -d "All your dotfiles are belong to us"
     function install_node_packages
         npm i -g eslint stylelint prettier @fsouza/prettierd eslint-config-prettier \
             eslint-plugin-react stylelint-config-recommended eslint_d \
-            typescript typescript-language-server diagnostic-languageserver
+            typescript typescript-language-server vscode-langservers-extracted
     end
 
     function install_vim_plug
