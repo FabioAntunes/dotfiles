@@ -87,12 +87,10 @@ return require("packer").startup(function(use)
       require("fantunes.plugins.treesitter")
     end,
   })
-
   use({
     "nvim-treesitter/playground",
     cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
   })
-
   use({ "windwp/nvim-ts-autotag" })
   use({ "andymass/vim-matchup" })
 

@@ -39,6 +39,7 @@ local on_attach_without_format = function(client, bufnr)
 
   on_attach(client, bufnr)
 end
+
 -- Tsserver setup
 lspconfig.tsserver.setup({
   root_dir = lspconfig.util.root_pattern("yarn.lock", ".git", "package.json"),
@@ -47,7 +48,6 @@ lspconfig.tsserver.setup({
 })
 
 -- Lua setup
-
 local pathDotfiles = vim.fn.expand("$DOTFILES/lua-language-server")
 local luadev = require("lua-dev").setup({
   lspconfig = {
@@ -67,6 +67,11 @@ lspconfig.terraformls.setup({
 })
 lspconfig.tflint.setup({
   on_attach = on_attach,
+})
+
+-- YAML setup
+lspconfig.yamlls.setup({
+  on_attach = on_attach_without_format,
 })
 
 -- Vim lsp
@@ -120,7 +125,7 @@ lspconfig.jsonls.setup({
   },
 })
 
--- Formatting via efm
+-- Formatting and linting via efm
 local prettier = require("fantunes.plugins.nvim-lsp.efm-prettier")
 local eslint = require("fantunes.plugins.nvim-lsp.efm-eslint")
 local luaformat = require("fantunes.plugins.nvim-lsp.efm-luaformat")
