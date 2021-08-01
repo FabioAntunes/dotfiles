@@ -110,8 +110,8 @@ set -l dot_basepath $dir/tilde
 test_symlink .Brewfile $basepath $dot_basepath
 test_symlink .eslintrc.js $basepath $dot_basepath
 test_symlink .gitignore_global $basepath $dot_basepath
-test_symlink .prettierrc $basepath $dot_basepath
-test_symlink .stylelintrc $basepath $dot_basepath
+test_symlink .prettierrc.json $basepath $dot_basepath
+test_symlink .stylelintrc.json $basepath $dot_basepath
 
 ##########################
 # Test .config/yamllint

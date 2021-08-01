@@ -9,8 +9,8 @@ function yolo -d "All your dotfiles are belong to us"
     argparse $options -- $argv
 
     set -gx functions_list $_flag_n $_flag_m $_flag_s $_flag_v $_flag_c
-    set -gx keys 'fish' 'nvim' 'vim' 'iterm2' 'ssh' 'tilde' 'yamllint'
-    set -gx paths ~/.config/fish ~/.config/nvim ~/.vim ~/Library/Application\ Support/iTerm2/DynamicProfiles ~/.ssh ~ ~/.config/yamllint
+    set -gx keys fish nvim vim iterm2 ssh tilde yamllint efm-langserver
+    set -gx paths ~/.config/fish ~/.config/nvim ~/.vim ~/Library/Application\ Support/iTerm2/DynamicProfiles ~/.ssh ~ ~/.config/yamllint ~/.config/efm-langserver
     set -e symlinks
     set -gx symlinks
     set -gx symlinks_error
@@ -32,7 +32,10 @@ function yolo -d "All your dotfiles are belong to us"
     end
 
     function install_node_packages
-        npm i -g eslint stylelint prettier eslint-config-prettier eslint-plugin-react stylelint-config-recommended eslint_d
+        npm i -g eslint stylelint prettier @fsouza/prettierd eslint-config-prettier \
+            eslint-plugin-react stylelint-config-recommended eslint_d \
+            typescript typescript-language-server vscode-langservers-extracted \
+            yaml-language-server
     end
 
     function install_vim_plug
@@ -40,13 +43,13 @@ function yolo -d "All your dotfiles are belong to us"
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs $plug_url
 
         #install Plugins for vim and neovim
-        if status --is-interactive; and [ "$GITHUB_ACTIONS" != "true" ]
-          vim +PlugInstall +qall
+        if status --is-interactive; and [ "$GITHUB_ACTIONS" != true ]
+            vim +PlugInstall +qall
         end
     end
 
     function copy_files
-        echo  -e "\nCopying files"
+        echo -e "\nCopying files"
         set origin $dir/consolas-powerline/*.ttf
         set dest $HOME/Library/Fonts/
         mkdir -p $dest
