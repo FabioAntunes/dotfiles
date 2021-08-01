@@ -11,10 +11,8 @@ require("telescope").setup({
     shorten_path = false,
     mappings = {
       i = {
-        -- To disable a keymap, put [map] = false
-        -- So, to not map "<C-n>", just put
-        ["<C-n>"] = false,
-        ["<C-p>"] = false,
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-p>"] = actions.move_selection_previous,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
@@ -26,6 +24,7 @@ require("telescope").setup({
 local M = {}
 M.search_dotfiles = function()
   require("telescope.builtin").find_files({
+    hidden = true,
     prompt_title = "< dotfiles >",
     cwd = "$DOTFILES",
   })

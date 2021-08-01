@@ -20,13 +20,14 @@ vim.opt.signcolumn = "yes"
 vim.opt.signcolumn = "yes"
 
 -- indenting
-vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
-vim.opt.softtabstop = 2
--- convert tabs to 2 spaces, indent 2 spaces as well
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+
+-- show tabs and trailing spaces
 vim.opt.list = true
 vim.opt.listchars = { trail = "·", tab = "»·" }
 
@@ -34,7 +35,7 @@ vim.opt.listchars = { trail = "·", tab = "»·" }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- No backup and swap files
+-- No swap files and unlimited undo
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.undodir = vim.fn.expand("~/.local/share/nvim/undodir")
