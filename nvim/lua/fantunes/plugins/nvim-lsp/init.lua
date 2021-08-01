@@ -142,7 +142,7 @@ local fishformat = require("fantunes.plugins.nvim-lsp.efm-fish")
 
 local languages = {
   css = { prettier },
-  fish = { fishformat},
+  fish = { fishformat },
   html = { prettier },
   javascript = { prettier, eslint },
   javascriptreact = { prettier, eslint },
@@ -159,7 +159,7 @@ lspconfig.efm.setup({
   root_dir = lspconfig.util.root_pattern("yarn.lock", "package.json", ".git"),
   filetypes = vim.tbl_keys(languages),
   init_options = { documentFormatting = true, codeAction = true },
-  settings = { languages = languages, log_level = 1, log_file = vim.fn.expand("~/efm.log") },
+  settings = { languages = languages, logLevel = 1, logFile = vim.fn.expand("~/efm.log") },
   on_attach = on_attach,
 })
 

@@ -45,17 +45,8 @@ rm AWSCLIV2.pkg
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all --no-bash --no-zsh
 
-####################
-### modify $PATH ###
-####################
-function add_to_path
-    if not contains $argv[1] $fish_user_paths
-        set -U fish_user_paths $argv[1] $fish_user_paths
-    end
-end
-
-add_to_path /usr/local/go/bin
-add_to_path $HOME/.yarn/bin
+fish_add_path /usr/local/go/bin
+fish_add_path $HOME/.yarn/bin
 
 #######################
 ### create symlinks ###
