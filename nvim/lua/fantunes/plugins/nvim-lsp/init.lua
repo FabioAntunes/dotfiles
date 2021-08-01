@@ -138,19 +138,21 @@ lspconfig.jsonls.setup({
 local prettier = require("fantunes.plugins.nvim-lsp.efm-prettier")
 local eslint = require("fantunes.plugins.nvim-lsp.efm-eslint")
 local luaformat = require("fantunes.plugins.nvim-lsp.efm-luaformat")
+local fishformat = require("fantunes.plugins.nvim-lsp.efm-fish")
 
 local languages = {
-  lua = { luaformat },
-  typescript = { prettier, eslint },
-  javascript = { prettier, eslint },
-  typescriptreact = { prettier, eslint },
-  javascriptreact = { prettier, eslint },
-  yaml = { prettier },
-  json = { prettier },
-  html = { prettier },
-  scss = { prettier },
   css = { prettier },
+  fish = { fishformat},
+  html = { prettier },
+  javascript = { prettier, eslint },
+  javascriptreact = { prettier, eslint },
+  json = { prettier },
+  lua = { luaformat },
   markdown = { prettier },
+  scss = { prettier },
+  typescript = { prettier, eslint },
+  typescriptreact = { prettier, eslint },
+  yaml = { prettier },
 }
 
 lspconfig.efm.setup({
