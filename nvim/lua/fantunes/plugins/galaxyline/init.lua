@@ -145,7 +145,8 @@ local function file_with_icons(short)
     return ""
   end
 
-  local modified_icon = "ﰂ"
+  local modified_icon = "﬒"
+
   local readonly_icon = ""
 
   if buffer_is_readonly() then
