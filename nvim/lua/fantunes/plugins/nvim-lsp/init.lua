@@ -27,7 +27,7 @@ local on_attach = function(client, bufnr)
     vim.cmd([[command! LspFormat lua vim.lsp.buf.formatting_sync()]])
     vim.cmd([[augroup lsp_formatting]])
     vim.cmd([[autocmd!]])
-    vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
+    vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nill, 3000)]])
     vim.cmd([[augroup END]])
   end
 end
@@ -136,6 +136,7 @@ lspconfig.jsonls.setup({
 
 -- Formatting and linting via efm
 local prettier = require("fantunes.plugins.nvim-lsp.efm-prettier")
+local rego = require("fantunes.plugins.nvim-lsp.efm-rego")
 local eslint = require("fantunes.plugins.nvim-lsp.efm-eslint")
 local luaformat = require("fantunes.plugins.nvim-lsp.efm-luaformat")
 local fishformat = require("fantunes.plugins.nvim-lsp.efm-fish")
@@ -149,6 +150,7 @@ local languages = {
   json = { prettier },
   lua = { luaformat },
   markdown = { prettier },
+  rego = { rego },
   scss = { prettier },
   typescript = { prettier, eslint },
   typescriptreact = { prettier, eslint },
@@ -156,10 +158,11 @@ local languages = {
 }
 
 lspconfig.efm.setup({
+  cmd = { "efm-langserver", "-loglevel", "1", "-logfile", vim.fn.expand("$HOME") .. "/tmp/efm.log" },
   root_dir = lspconfig.util.root_pattern("yarn.lock", "package.json", ".git"),
   filetypes = vim.tbl_keys(languages),
-  init_options = { documentFormatting = true, codeAction = true },
-  settings = { languages = languages, logLevel = 1, logFile = vim.fn.expand("~/efm.log") },
+  init_options = { documentFormatting = true, codeAction = false },
+  settings = { languages = languages },
   on_attach = on_attach,
 })
 
