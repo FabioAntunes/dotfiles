@@ -158,7 +158,7 @@ local languages = {
 }
 
 lspconfig.efm.setup({
-  cmd = { "efm-langserver", "-loglevel", "1", "-logfile", vim.fn.expand("$HOME") .. "/tmp/efm.log" },
+  cmd = { "efm-langserver", "-logfile", vim.fn.expand("$HOME") .. "/tmp/efm.log" },
   root_dir = lspconfig.util.root_pattern("yarn.lock", "package.json", ".git"),
   filetypes = vim.tbl_keys(languages),
   init_options = { documentFormatting = true, codeAction = false },

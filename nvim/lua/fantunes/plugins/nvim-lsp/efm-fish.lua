@@ -1,5 +1,5 @@
 return {
-  formatCommand = 'fish_indent "${INPUT}"',
+  formatCommand = "fish_indent",
   formatStdin = true,
   lintCommand = 'fish -n "${INPUT}"',
   lintStdin = true,
