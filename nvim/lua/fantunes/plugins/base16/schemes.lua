@@ -2,13 +2,21 @@ local base16 = require("base16-colorscheme")
 
 local M = {}
 
+function M.getBase16SchemeName()
+  return vim.g.colors_name:gsub("base16%-", "")
+end
+
 function M.getBase16Scheme()
-  local colorschemeName = vim.g.colors_name:gsub("base16%-", "")
+  local colorschemeName = M.getBase16SchemeName()
   return base16.colorschemes[colorschemeName]
 end
 
-function M.load(colorscheme)
-  vim.cmd("colorscheme " .. colorscheme)
+function M.load()
+  if vim.fn.filereadable(vim.fn.expand("~/.vimrc_background")) then
+    vim.cmd("source $HOME/.vimrc_background")
+  end
+  local colorschemeName = M.getBase16SchemeName()
+  vim.cmd("colorscheme base16-" .. colorschemeName)
   local cmd = vim.api.nvim_command
   local colorBg = M.getBase16Scheme().base00
   local colorError = M.getBase16Scheme().base08
