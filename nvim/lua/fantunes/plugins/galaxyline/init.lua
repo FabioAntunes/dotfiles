@@ -41,6 +41,8 @@ local myIcons = require("galaxyline.provider_fileinfo").define_file_icon() -- ge
 myIcons["netrw"] = { getBase16Scheme().base07, "פּ" }
 myIcons["fish"] = { getBase16Scheme().base0C, "" }
 myIcons[".fish"] = { getBase16Scheme().base0C, "" }
+myIcons["terraform"] = { getBase16Scheme().base0E, "" }
+myIcons["hcl"] = { getBase16Scheme().base0E, "" }
 
 local highlight = function(args)
   local cmd = "hi " .. args.name
