@@ -63,19 +63,10 @@ return require("packer").startup(function(use)
   })
 
   use({
-    "kyazdani42/nvim-tree.lua",
-    config = function()
-      require("fantunes.plugins.nvim-tree")
-    end,
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
-  })
-
-  use({
-    "glepnir/galaxyline.nvim",
-    branch = "main",
+    "famiu/feline.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
-      require("fantunes.plugins.galaxyline")
+      require("fantunes.plugins.feline")
     end,
   })
 
