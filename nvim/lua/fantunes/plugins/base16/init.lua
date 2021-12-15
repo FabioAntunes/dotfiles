@@ -1,4 +1,4 @@
-vim.api.nvim_exec(
+vim.cmd(
   [[
       augroup base16
         autocmd!

@@ -1,7 +1,3 @@
-[submodule "consolas-powerline"]
-	path = consolas-powerline
-	url = https://github.com/Znuff/consolas-powerline.git
-	ignore = dirty
 [submodule "lua-language-server"]
 	path = lua-language-server
 	url = https://github.com/sumneko/lua-language-server

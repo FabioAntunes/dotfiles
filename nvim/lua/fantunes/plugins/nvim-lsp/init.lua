@@ -12,7 +12,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>ld", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "gh", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_set_keymap("n", "<C-i>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   -- buf_set_keymap('n', '<space>rm', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap("n", "<leader>ln", "<cmd>lua require'lsp-ui.rename'.rename()<CR>", opts)
   buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -24,11 +24,10 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    vim.cmd([[command! LspFormat lua vim.lsp.buf.formatting_sync()]])
-    vim.cmd([[augroup lsp_formatting]])
-    vim.cmd([[autocmd!]])
-    vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nill, 3000)]])
-    vim.cmd([[augroup END]])
+    vim.api.nvim_command([[augroup Format]])
+    vim.api.nvim_command([[autocmd! * <buffer>]])
+    vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]])
+    vim.api.nvim_command([[augroup END]])
   end
 end
 

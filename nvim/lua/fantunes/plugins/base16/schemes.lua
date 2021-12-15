@@ -26,13 +26,13 @@ function M.load()
 
   local signs = {
     Error = { text = " ", color = colorError },
-    Warning = { text = " ", color = colorWarning },
+    Warn = { text = " ", color = colorWarning },
     Hint = { text = " ", color = colorHint },
-    Information = { text = " ", color = colorInfo },
+    Info = { text = " ", color = colorInfo },
   }
 
   for type, icon in pairs(signs) do
-    local hl = "LspDiagnosticsSign" .. type
+    local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon.text, texthl = hl, numhl = "" })
 
     cmd("hi " .. hl .. " guibg=" .. colorBg .. " guifg=" .. icon.color)
