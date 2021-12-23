@@ -63,6 +63,13 @@ return require("packer").startup(function(use)
   })
 
   use({
+    "luukvbaal/nnn.nvim",
+    config = function()
+      require("fantunes.plugins.nnn-nvim")
+    end,
+  })
+
+  use({
     "famiu/feline.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()

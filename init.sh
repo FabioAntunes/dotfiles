@@ -60,18 +60,6 @@ set_fish_shell () {
   fi
 }
 
-install_powerfonts () {
-  # create the folder if it doesn't exist
-  mkdir -p $HOME/Library/Fonts
-  # clone
-  command git clone https://github.com/powerline/fonts.git --depth=1 && \
-  # install
-  cd fonts && \
-  command bash install.sh && \
-  # clean-up a bit
-  cd ..; rm -rf fonts/
-}
-
 install_nvm () {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
   # manually source nvm

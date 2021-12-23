@@ -1,5 +1,4 @@
 require("fantunes.plugins.telescope.keymaps")
-require("fantunes.plugins.nvim-tree.keymaps")
 
 local map = vim.api.nvim_set_keymap
 local mapOpts = { noremap = true }

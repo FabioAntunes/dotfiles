@@ -115,6 +115,13 @@ popd
 ./3rd/luamake/luamake rebuild
 popd
 
+##### install nnn
+pushd $DOTFILES/nnn
+git submodule update --init --recursive
+make O_NERD=1
+mv nnn /usr/local/bin/
+popd
+
 curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.16.12/bin/'$os'/amd64/kubectl'
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl

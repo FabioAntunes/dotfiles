@@ -43,13 +43,17 @@ if test -d $HOME/platform-tools
     add_to_path $HOME/platform-tools
 end
 
+if test -d $HOME/.krew/bin
+    add_to_path $HOME/.krew/bin
+end
+
 add_to_path $GOPATH/bin
 add_to_path $HOME/google-cloud-sdk/bin
 
 # add aws completions
 type -q aws_completer
-and complete --command aws --no-files --arguments\
- '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+and complete --command aws --no-files --arguments \
+    '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
 
 function postexec --on-event fish_postexec
