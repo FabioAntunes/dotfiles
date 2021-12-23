@@ -1,12 +1,12 @@
 ##########################
 # Test binaries installed
 ##########################
-set -l binaries node vim nvim kubectl kubectx yarn
+set -l binaries node vim nvim kubectl kubectx yarn nnn
 # source node
 nvm use default
 
 for bin in $binaries
-  @test "binary $bin installed" (command -v $bin > /dev/null) $status -eq 0
+    @test "binary $bin installed" (command -v $bin > /dev/null) $status -eq 0
 end
 
 ##########################
@@ -15,7 +15,7 @@ end
 set -l packages bass fishtape
 
 for package in $packages
-  @test "fisher package $package installed" (type -p $package > /dev/null) $status -eq 0
+    @test "fisher package $package installed" (type -p $package > /dev/null) $status -eq 0
 end
 
 ##########################
@@ -24,7 +24,7 @@ end
 set -l functions yolo toggle-js-configs
 
 for function in $functions
-  @test "function $function is loaded" (type -p $function > /dev/null) $status -eq 0
+    @test "function $function is loaded" (type -p $function > /dev/null) $status -eq 0
 end
 
 ##########################
@@ -33,5 +33,5 @@ end
 set -l go_binaries godoc goimports gopls dlv
 
 for go_bin in $go_binaries
-  @test "binary $go_bin installed" (command -v $go_bin > /dev/null) $status -eq 0
+    @test "binary $go_bin installed" (command -v $go_bin > /dev/null) $status -eq 0
 end
