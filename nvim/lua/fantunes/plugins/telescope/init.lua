@@ -29,7 +29,7 @@ require("telescope").setup({
   },
 })
 
-require('telescope').load_extension('fzf')
+require("telescope").load_extension("fzf")
 
 local M = {}
 M.search_dotfiles = function()

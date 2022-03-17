@@ -6,6 +6,9 @@ map("t", "<C-t>", ":NnnExplorer<CR>", mapOpts)
 map("n", "<C-t>", ":NnnExplorer<CR>", mapOpts)
 
 require("nnn").setup({
+  explorer = {
+    cmd = "nnn -H",
+  },
   replace_netrw = "explorer",
   auto_close = true,
   windownav = {

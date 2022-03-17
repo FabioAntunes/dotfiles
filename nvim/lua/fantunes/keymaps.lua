@@ -18,6 +18,9 @@ map("n", "<Leader>v", ":vsplit<CR>", mapOpts)
 -- clean up any trailing whitespace
 map("n", "<Leader>w", ":%s/\\s\\+$//<cr>:let @/=''<CR>", mapOpts)
 
+-- source current luafile
+map("n", "<Leader>s", ":luafile %<CR>", mapOpts)
+
 -- Move to the beginning/end of the line with H and L
 map("", "H", "^", mapOpts)
 map("", "L", "$", mapOpts)
