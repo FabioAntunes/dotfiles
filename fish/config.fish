@@ -1,5 +1,6 @@
 # misc vars
 set -gx DOTFILES (string replace /fish '' (dirname (readlink (status --current-filename))))
+set -gx AWS_VAULT_BACKEND pass
 set -gx color_scheme 1
 set -gx KEYID 5FA46F5D9283889A5DEA82559A22C137957B5A47
 set -gx fish_emoji_width 2
