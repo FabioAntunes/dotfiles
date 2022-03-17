@@ -8,7 +8,7 @@ source fish/functions/yolo.fish
 ### fish shell setup ###
 ########################
 set -gx fish_greeting
-set $DOTFILES (dirname (realpath (status --current-filename)))
+set gx $DOTFILES (dirname (realpath (status --current-filename)))
 
 #create abbreviations
 abbr -a gout git checkout
@@ -108,6 +108,7 @@ end
 
 ##### install lua language server on OSX only
 if [ (uname) = Darwin ]
+    echo "Installing nnn"
     pushd $DOTFILES/lua-language-server
     git submodule update --init --recursive
     pushd $DOTFILES/lua-language-server/3rd/luamake
@@ -118,13 +119,15 @@ if [ (uname) = Darwin ]
 end
 
 ##### install nnn
+echo "Installing nnn"
 pushd $DOTFILES/nnn
 git submodule update --init --recursive
 make O_NERD=1
+chmod +x ./nnn
 mv nnn /usr/local/bin/
 popd
 
-curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.16.12/bin/'$os'/amd64/kubectl'
+curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.19.16/bin/'$os'/amd64/kubectl'
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 
