@@ -8,14 +8,14 @@ source fish/functions/yolo.fish
 ### fish shell setup ###
 ########################
 set -gx fish_greeting
-set current_dir (dirname (realpath (status --current-filename)))
+set $DOTFILES (dirname (realpath (status --current-filename)))
 
 #create abbreviations
 abbr -a gout git checkout
 abbr -a g git
 abbr -a k kubectl
 abbr -a me cd $HOME/playground
-abbr -a dot cd $current_dir
+abbr -a dot cd $DOTFILES
 abbr -a work cd $HOME/work
 
 #################
