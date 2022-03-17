@@ -348,7 +348,7 @@ require("feline").setup({
     ["V-REPLACE"] = scheme.base09,
     ["COMMAND"] = scheme.base0A,
   },
-  colors = {
+  theme = {
     fg = scheme.base07,
     bg = scheme.base00,
     black = scheme.base01,

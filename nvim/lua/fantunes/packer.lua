@@ -22,10 +22,16 @@ return require("packer").startup(function(use)
   -- utils
   use({ "jordwalke/VimAutoMakeDirectory" })
   use({ "thinca/vim-visualstar" })
-  use({ "tpope/vim-commentary" })
   use({ "tpope/vim-eunuch" })
   use({ "tpope/vim-repeat" })
   use({ "tpope/vim-surround" })
+
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
 
   -- color related stuff
   use({

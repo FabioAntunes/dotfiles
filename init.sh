@@ -8,14 +8,6 @@ if [ "$GITHUB_ACTIONS" = "true" ]; then
   git submodule update --recursive --remote
 fi
 
-make_dirs () {
-  mkdir -p $HOME/.local/share/nvim/undodir
-  mkdir -p $HOME/.vim/undodir
-  mkdir -p $HOME/go
-  mkdir -p $HOME/playground
-  mkdir -p $HOME/work
-}
-
 config_git () {
   # although this file doesn't exist, yet, git doesn't seem to be bothered by that
   git config --global core.excludesfile $HOME/.gitignore_global
