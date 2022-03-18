@@ -119,12 +119,12 @@ if [ (uname) = Darwin ]
 end
 
 ##### install nnn
+ls -la
 echo "Installing nnn"
 pushd $DOTFILES/nnn
+ls -la
 git submodule update --init --recursive
-make O_NERD=1
-chmod +x ./nnn
-mv nnn /usr/local/bin/
+make O_NERD=1 && make install
 popd
 
 curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.19.16/bin/'$os'/amd64/kubectl'
