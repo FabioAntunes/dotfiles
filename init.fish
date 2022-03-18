@@ -8,7 +8,7 @@ source fish/functions/yolo.fish
 ### fish shell setup ###
 ########################
 set -gx fish_greeting
-set gx $DOTFILES (dirname (realpath (status --current-filename)))
+set -gx $DOTFILES (dirname (realpath (status --current-filename)))
 
 #create abbreviations
 abbr -a gout git checkout
@@ -119,14 +119,13 @@ if [ (uname) = Darwin ]
 end
 
 ##### install nnn
-pwd
-ls -la
 echo "Installing nnn"
 echo $DOTFILES/nnn
 pushd ./nnn
 ls -la
 git submodule update --init --recursive
-make O_NERD=1 && make install
+make O_NERD=1
+sudo make install
 popd
 
 curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.19.16/bin/'$os'/amd64/kubectl'
