@@ -119,9 +119,11 @@ if [ (uname) = Darwin ]
 end
 
 ##### install nnn
+pwd
 ls -la
 echo "Installing nnn"
-pushd $DOTFILES/nnn
+echo $DOTFILES/nnn
+pushd ./nnn
 ls -la
 git submodule update --init --recursive
 make O_NERD=1 && make install
