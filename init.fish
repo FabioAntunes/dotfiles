@@ -83,16 +83,17 @@ function tar_archive
 end
 
 function install_go_dependencies
-    go get golang.org/x/tools/cmd/godoc
-    go get golang.org/x/tools/cmd/goimports
-    go get -u github.com/go-delve/delve/cmd/dlv
-    GO111MODULE=on go get golang.org/x/tools/gopls@latest
+    echo "Installing go dependencies"
+    go install golang.org/x/tools/godoc@latest
+    go install golang.org/x/tools/goimports@latest
+    go install golang.org/x/tools/gopls@latest
 end
 
 if [ "$GITHUB_ACTIONS" = true ]
     # machines on Github actions already have golang installed
     install_go_dependencies
 else
+    echo "Installing golang"
     set version (curl 'https://golang.org/VERSION?m=text')
     set filename "$version.$os-amd64.tar.gz"
     set golang_path /usr/local
@@ -108,7 +109,7 @@ end
 
 ##### install lua language server on OSX only
 if [ (uname) = Darwin ]
-    echo "Installing nnn"
+    echo "Installing lua-language-server"
     pushd $DOTFILES/lua-language-server
     git submodule update --init --recursive
     pushd $DOTFILES/lua-language-server/3rd/luamake
