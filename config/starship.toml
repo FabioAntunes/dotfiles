@@ -1,0 +1,24 @@
+# Disable the package module, hiding it from the prompt completely
+[docker_context]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[python]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[kubernetes]
+disabled = false
+symbol = " "
+
+[aws]
+format = "on [$symbol($profile )(\\($region\\) )(\\[$duration\\] )]($style)"
+
+[terraform]
+format = "via [$symbol$version]($style) "
+detect_files = ["terragrunt.hcl"]
+detect_extensions = ["tf", "tfplan", "tfstate", "hcl"]

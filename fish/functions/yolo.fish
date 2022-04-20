@@ -10,14 +10,14 @@ function yolo -d "All your dotfiles are belong to us"
 
     set -gx functions_list $_flag_n $_flag_m $_flag_s $_flag_v $_flag_c
     # the order of the keys must map to the orther of the $paths variable
-    set -gx keys fish nvim vim iterm2 ssh gnupg tilde yamllint efm-langserver
+    set -gx keys fish nvim vim iterm2 ssh gnupg tilde config
     # sets paths multiple times so it breaks nicely in multiple lines
     set -gx paths ~/.config/fish ~/.config/nvim ~/.vim
     set -gx paths $paths ~/Library/Application\ Support/iTerm2/DynamicProfiles
     set -gx paths $paths ~/.ssh ~/.gnupg
     # this maps to the tilde key/folder
     set -gx paths $paths ~
-    set -gx paths $paths ~/.config/yamllint ~/.config/efm-langserver
+    set -gx paths $paths ~/.config
     set -e symlinks
     set -gx symlinks
     set -gx symlinks_error
