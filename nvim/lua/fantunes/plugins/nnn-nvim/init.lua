@@ -2,8 +2,7 @@ vim.cmd([[packadd nvim-web-devicons]])
 local map = vim.api.nvim_set_keymap
 local mapOpts = { noremap = true }
 
-map("t", "<C-t>", ":NnnExplorer<CR>", mapOpts)
-map("n", "<C-t>", ":NnnExplorer<CR>", mapOpts)
+map("n", "<leader>nn", ":NnnExplorer<CR>", mapOpts)
 
 require("nnn").setup({
   explorer = {

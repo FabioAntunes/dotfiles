@@ -83,6 +83,13 @@ return require("packer").startup(function(use)
     end,
   })
 
+  use({
+    "L3MON4D3/LuaSnip",
+    config = function()
+      require("fantunes.plugins.luasnip")
+    end,
+  })
+
   -- Treesitter
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -107,9 +114,23 @@ return require("packer").startup(function(use)
     end,
   })
   use({
-    "hrsh7th/nvim-compe",
+    "hrsh7th/nvim-cmp",
     config = function()
-      require("fantunes.plugins.nvim-compe")
+      require("fantunes.plugins.nvim-cmp")
+    end,
+  })
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-nvim-lua")
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-nvim-lsp-document-symbol")
+  use("saadparwaiz1/cmp_luasnip")
+  use("onsails/lspkind-nvim")
+
+  use({
+    "antoinemadec/FixCursorHold.nvim",
+    run = function()
+      vim.g.curshold_updatime = 1000
     end,
   })
 end)
