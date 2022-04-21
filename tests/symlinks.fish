@@ -117,9 +117,25 @@ test_symlink .stylelintrc.json $basepath $dot_basepath
 # Test .config/yamllint
 ##########################
 set -l basepath $HOME/.config/yamllint
-set -l dot_basepath $dir/yamllint
+set -l dot_basepath $dir/config/yamllint
 
 test_symlink config $basepath $dot_basepath
+
+##########################
+# Test .config/efm-langserver
+##########################
+set -l basepath $HOME/.config/efm-langserver
+set -l dot_basepath $dir/config/efm-langserver
+
+test_symlink config $basepath $dot_basepath
+
+##########################
+# Test .config/starship.toml
+##########################
+set -l basepath $HOME/.config
+set -l dot_basepath $dir/config
+
+test_symlink starship.toml $basepath $dot_basepath
 
 ##########################
 # Test .ssh
