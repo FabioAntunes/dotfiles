@@ -6,7 +6,7 @@ set -l binaries node vim nvim kubectl kubectx yarn nnn
 nvm use default
 
 for bin in $binaries
-    @test "binary $bin installed" (command -v $bin > /dev/null) $status -eq 0
+    @test "binary $bin is installed" (command -v $bin > /dev/null) $status -eq 0
 end
 
 ##########################
@@ -15,7 +15,7 @@ end
 set -l packages bass fishtape
 
 for package in $packages
-    @test "fisher package $package installed" (type -p $package > /dev/null) $status -eq 0
+    @test "fisher package $package is installed" (type -p $package > /dev/null) $status -eq 0
 end
 
 ##########################
@@ -30,8 +30,8 @@ end
 ##########################
 # Test go binaries installed
 ##########################
-set -l go_binaries godoc goimports gopls dlv
+set -l go_binaries godoc goimports gopls
 
 for go_bin in $go_binaries
-    @test "binary $go_bin installed" (command -v $go_bin > /dev/null) $status -eq 0
+    @test "go binary $go_bin is installed" (command -v $go_bin > /dev/null) $status -eq 0
 end

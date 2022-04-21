@@ -84,8 +84,8 @@ end
 
 function install_go_dependencies
     echo "Installing go dependencies"
-    go install golang.org/x/tools/godoc@latest
-    go install golang.org/x/tools/goimports@latest
+    go install golang.org/x/tools/cmd/godoc@latest
+    go install golang.org/x/tools/cmd/goimports@latest
     go install golang.org/x/tools/gopls@latest
 end
 
