@@ -41,7 +41,7 @@ set -l basepath $HOME/.config/fish/completions
 set -l dot_basepath $dir/fish/completions
 
 test_symlink yolo.fish $basepath $dot_basepath
-test_symlink aws-okta.fish $basepath $dot_basepath
+test_symlink aws-vault.fish $basepath $dot_basepath
 
 
 ##########################
@@ -127,7 +127,7 @@ test_symlink config $basepath $dot_basepath
 set -l basepath $HOME/.config/efm-langserver
 set -l dot_basepath $dir/config/efm-langserver
 
-test_symlink config $basepath $dot_basepath
+test_symlink config.yaml $basepath $dot_basepath
 
 ##########################
 # Test .config/starship.toml
