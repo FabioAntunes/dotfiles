@@ -441,7 +441,7 @@
         "Green Component": 0.14901961
       },
       "Blur": false,
-      "Normal Font": "SauceCodeProNerdFontCompleteM-Light 14",
+      "Normal Font": "SauceCodeProNerdFontCompleteM-Regular 15",
       "Vertical Spacing": 1,
       "Ansi 7 Color": {
         "Red Component": 0.65098040000000001,
@@ -486,7 +486,7 @@
       "Columns": 80,
       "Visual Bell": false,
       "Custom Directory": "Recycle",
-      "Thin Strokes": 0,
+      "Thin Strokes": 3,
       "ASCII Ligatures": false
     }
 
