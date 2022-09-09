@@ -76,7 +76,7 @@ return require("packer").startup(function(use)
   })
 
   use({
-    "famiu/feline.nvim",
+    "feline-nvim/feline.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("fantunes.plugins.feline")
