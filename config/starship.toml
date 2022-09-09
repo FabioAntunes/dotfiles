@@ -1,4 +1,58 @@
-# Disable the package module, hiding it from the prompt completely
+# format = """
+# $directory\
+# [](#9A348E)\
+# $username\
+# [](bg:#DA627D fg:#9A348E)\
+# [](fg:#DA627D bg:#FCA17D)\
+# $git_branch\
+# $git_status\
+# [](fg:#FCA17D bg:#86BBD8)\
+# $nodejs\
+# $rust\
+# [](fg:#86BBD8 bg:#33658A)\
+# [ ](fg:#33658A)\
+# $line_break\
+# $directory\
+# $jobs\
+# $battery\
+# $status\
+# $character"""
+
+format = """
+[┏](bold 8)\
+$kubernetes\
+$aws\
+$golang\
+$terraform\
+$line_break\
+[┣](bold 8)\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$line_break\
+[┖](bold 8)\
+$jobs\
+$battery\
+$status\
+$character"""
+
+[directory]
+style = "bg:0 bold fg:7"
+format = "[ $path ]($style)"
+
+[git_branch]
+style = "bg:18 fg:7"
+format = "([](bg:18 fg:0)[ $symbol$branch ]($style))"
+
+[git_state]
+style = "bg:18 bold fg:1"
+format = "([\\($state( $progress_current/$progress_total)\\) ]($style))[](bg:0 fg:18)"
+
+[git_status]
+style = "bg:18 bold fg:1"
+format = "([\\[$all_status$ahead_behind\\] ]($style))[](bg:0 fg:18)"
+
 [docker_context]
 disabled = true
 
@@ -13,12 +67,34 @@ disabled = true
 
 [kubernetes]
 disabled = false
-symbol = " "
+# solid dark
+style = "bg:18 bold fg:6"
+format = "([](bg:0 fg:18)[ ﴱ](bg:18 fg:6 bold)[ $context( \\($namespace\\)) ]($style)[](bg:0 fg:18))"
+# chars
+# style = "bg:0 fg:#e8e9ed"
+# format = "([\\[ ](bg:0 fg:8 bold)[ﴱ $context(/$namespace)]($style)[ \\]](bg:0 fg:8))"
 
 [aws]
-format = "on [$symbol($profile )(\\($region\\) )(\\[$duration\\] )]($style)"
+symbol = ""
+# solid dark
+style = "bg:18 fg:3"
+format = "([](bg:18 fg:0)[ ($symbol $profile )(\\[$duration\\])]($style)[](bg:0 fg:18))"
+# chars
+# style = "bg:0 fg:3"
+# format = "([--\\[ ](bg:0 fg:8 bold)[($symbol $profile )(\\($duration\\))]($style)[ \\]](bg:0 fg:8))"
 
 [terraform]
-format = "via [$symbol$version]($style) "
 detect_files = ["terragrunt.hcl"]
 detect_extensions = ["tf", "tfplan", "tfstate", "hcl"]
+# solid dark
+style = "bg:18 fg:5 bold"
+format = "([](bg:18 fg:0)[ 🆃 $version ]($style)[](bg:0 fg:18))"
+# chars
+# style = "bg:0 fg:5"
+# format = "([--\\[ ](bg:0 fg:8 bold)[🆃 $version]($style)[ \\]](bg:0 fg:8))"
+
+[golang]
+symbol = ""
+style = "bg:18 fg:4 bold"
+format = "([](bg:18 fg:0)[ ($symbol $version )]($style)[](bg:0 fg:18))"
+
