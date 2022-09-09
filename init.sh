@@ -62,7 +62,6 @@ install_nvm () {
 
 config_git
 install_nvm
-install_powerfonts
 
 if [ "$(uname)" == "Darwin" ]; then
   DevToolsSecurity -enable
