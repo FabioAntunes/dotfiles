@@ -39,10 +39,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0, desc = "LSP previous diagnostic" })
 
   -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_command([[augroup Format]])
     vim.api.nvim_command([[autocmd! * <buffer>]])
-    vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]])
+    vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
     if client.name == "gopls" then
       vim.api.nvim_command([[autocmd BufWritePre <buffer> lua Gopls_org_imports()]])
     end
@@ -53,7 +53,7 @@ local on_attach = function(client, bufnr)
     vim.diagnostic.disable()
   end
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.documentHighlightProvider and client.name ~= "efm" then
     vim.cmd([[
       augroup lsp_document_highlight
         autocmd! * <buffer>
@@ -67,7 +67,7 @@ end
 local on_attach_without_format = function(client, bufnr)
   -- This makes sure we don't use the LSP for formatting
   -- example: use tsserver for lsp but prettier for formatting
-  client.resolved_capabilities.document_formatting = false
+  client.server_capabilities.documentFormattingProvider = false
 
   on_attach(client, bufnr)
 end
