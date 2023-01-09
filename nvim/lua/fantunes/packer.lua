@@ -108,7 +108,7 @@ return require("packer").startup(function(use)
   -- LSP configs
   use({
     "neovim/nvim-lspconfig",
-    requires = { "folke/lua-dev.nvim" },
+    requires = { "folke/neodev.nvim" },
     config = function()
       require("fantunes.plugins.nvim-lsp")
     end,

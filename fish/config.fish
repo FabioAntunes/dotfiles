@@ -8,6 +8,8 @@ set -gx fish_greeting ''
 # use ag to pipe the results to fzf, ag respects the gitignore
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 set paths_to_add $HOME/platform-tools $HOME/.krew/bin $HOME/google-cloud-sdk/bin
+# stupid gcloud
+set -gx CLOUDSDK_PYTHON /usr/local/bin/python3.9
 
 if type -q go
     set -gx GOPATH (go env GOPATH)

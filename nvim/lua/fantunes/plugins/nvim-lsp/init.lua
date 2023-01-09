@@ -1,5 +1,6 @@
+require("neodev").setup()
 local lspconfig = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 function Gopls_org_imports(wait_ms)
   local params = vim.lsp.util.make_range_params()
@@ -86,19 +87,27 @@ require("lspconfig").gopls.setup({
 })
 
 -- Lua setup
-local pathDotfiles = vim.fn.expand("$DOTFILES/lua-language-server")
-local luadev = require("lua-dev").setup({
-  capabilities = capabilities,
-  lspconfig = {
-    cmd = {
-      pathDotfiles .. "/bin/macOs/lua-language-server",
-      "-E",
-      pathDotfiles .. "/main.lua",
+-- local pathDotfiles = vim.fn.expand("$DOTFILES/lua-language-server")
+-- local luadev = require("lua-dev").setup({
+--   capabilities = capabilities,
+--   lspconfig = {
+--     cmd = {
+--       pathDotfiles .. "/bin/macOs/lua-language-server",
+--       "-E",
+--       pathDotfiles .. "/main.lua",
+--     },
+--     on_attach = on_attach,
+--   },
+-- })
+lspconfig.sumneko_lua.setup({
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace",
+      },
     },
-    on_attach = on_attach,
   },
 })
-lspconfig.sumneko_lua.setup(luadev)
 
 -- Terraform setup
 lspconfig.terraformls.setup({
