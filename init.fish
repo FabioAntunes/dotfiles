@@ -107,18 +107,6 @@ else
     end
 end
 
-##### install lua language server on OSX only
-if [ (uname) = Darwin ]
-    echo "Installing lua-language-server"
-    pushd $DOTFILES/lua-language-server
-    git submodule update --init --recursive
-    pushd $DOTFILES/lua-language-server/3rd/luamake
-    ninja -f compile/ninja/macos.ninja
-    popd
-    ./3rd/luamake/luamake rebuild
-    popd
-end
-
 ##### install nnn
 echo "Installing nnn"
 echo $DOTFILES/nnn
