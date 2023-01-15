@@ -27,11 +27,6 @@ mkdir -p $HOME/go
 mkdir -p $HOME/playground
 mkdir -p $HOME/work
 
-####################
-### install yarn ###
-###################
-curl -o- -L https://yarnpkg.com/install.sh | bash
-
 ######################
 ### install awscli ###
 ######################
@@ -46,12 +41,16 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all --no-bash --no-zsh
 
 fish_add_path /usr/local/go/bin
-fish_add_path $HOME/.yarn/bin
 
 #######################
 ### create symlinks ###
 #######################
 yolo -s
+
+######################
+### install fisher ###
+######################
+curl -sL https://git.io/fisher | source && fisher update
 
 ####################
 ### brew bundle  ###

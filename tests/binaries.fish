@@ -1,7 +1,7 @@
 ##########################
 # Test binaries installed
 ##########################
-set -l binaries node vim nvim kubectl kubectx yarn nnn
+set -l binaries node vim nvim kubectl kubectx nnn
 # source node
 nvm use default
 
