@@ -99,7 +99,7 @@ require("lspconfig").gopls.setup({
 --     on_attach = on_attach,
 --   },
 -- })
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       completion = {
@@ -125,9 +125,9 @@ lspconfig.yamlls.setup({
   settings = {
     yaml = {
       schemas = {
-        ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
-        ["https://json.schemastore.org/chart.json"] = "**/Chart.yaml",
-        ["https://raw.githubusercontent.com/Azure/vscode-kubernetes-tools/master/syntaxes/helm.tmLanguage.json"] = "/*",
+            ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+            ["https://json.schemastore.org/chart.json"] = "**/Chart.yaml",
+            ["https://raw.githubusercontent.com/Azure/vscode-kubernetes-tools/master/syntaxes/helm.tmLanguage.json"] = "/*",
       },
     },
   },

@@ -1,9 +1,9 @@
 local ls = require("luasnip")
 local types = require("luasnip.util.types")
 
-ls.config.set_config({
+ls.setup({
   history = true,
-  updateevents = "TextChanged, TextChangedI",
+  update_events = "TextChanged, TextChangedI",
   enable_autosnippets = true,
   ext_opts = {
     [types.choiceNode] = {

@@ -116,9 +116,10 @@ make O_NERD=1
 sudo make install
 popd
 
-curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.19.16/bin/'$os'/amd64/kubectl'
+curl -LO 'https://dl.k8s.io/release/v1.23.16/bin/'$os'/amd64/kubectl'
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl completion fish >~/.config/fish/completions/kubectl.fish
 
 set base_url "https://github.com/ahmetb/kubectx/releases/download/v0.9.4"
 set ctx_filename 'kubectx_v0.9.4_'$os'_x86_64.tar.gz'
