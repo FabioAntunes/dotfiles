@@ -116,7 +116,7 @@ make O_NERD=1
 sudo make install
 popd
 
-curl -LO 'https://dl.k8s.io/release/v1.23.16/bin/'$os'/amd64/kubectl'
+curl -LO 'https://dl.k8s.io/release/v1.24.13/bin/'$os'/amd64/kubectl'
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl completion fish >~/.config/fish/completions/kubectl.fish
