@@ -4,7 +4,7 @@ local scheme = require("fantunes.plugins.base16.schemes").getBase16Scheme()
 require("nvim-web-devicons").setup({
   override = {
     netrw = {
-      icon = "פּ",
+      icon = "󰙅",
       color = scheme.base07,
       name = "Netrw",
     },
@@ -90,7 +90,7 @@ local file_info_provider = {
       name = "file_info",
       opts = {
         type = "unique",
-        file_modified_icon = "﬒",
+        file_modified_icon = "󰘓",
         file_readonly_icon = " ",
       },
     },
@@ -227,7 +227,7 @@ insert(1, {
   },
   {
     provider = "diagnostic_hints",
-    icon = "  ",
+    icon = " 󰈻 ",
     hl = {
       fg = scheme.base0C,
       bg = scheme.base00,
@@ -238,7 +238,7 @@ insert(1, {
   },
   {
     provider = "diagnostic_info",
-    icon = "  ",
+    icon = " 󰅺 ",
     hl = {
       fg = scheme.base0D,
       bg = scheme.base00,

@@ -69,10 +69,10 @@ disabled = true
 disabled = false
 # solid dark
 style = "bg:18 bold fg:6"
-format = "([](bg:0 fg:18)[ ﴱ](bg:18 fg:6 bold)[ $context( \\($namespace\\)) ]($style)[](bg:0 fg:18))"
+format = "([](bg:0 fg:18)[ 󰠳](bg:18 fg:6 bold)[ $context( \\($namespace\\)) ]($style)[](bg:0 fg:18))"
 # chars
 # style = "bg:0 fg:#e8e9ed"
-# format = "([\\[ ](bg:0 fg:8 bold)[ﴱ $context(/$namespace)]($style)[ \\]](bg:0 fg:8))"
+# format = "([\\[ ](bg:0 fg:8 bold)[󰠳 $context(/$namespace)]($style)[ \\]](bg:0 fg:8))"
 
 [aws]
 symbol = ""

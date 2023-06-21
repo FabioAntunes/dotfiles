@@ -27,8 +27,8 @@ function M.load()
   local signs = {
     Error = { text = " ", color = colorError },
     Warn = { text = " ", color = colorWarning },
-    Hint = { text = " ", color = colorHint },
-    Info = { text = " ", color = colorInfo },
+    Hint = { text = "󰈻 ", color = colorHint },
+    Info = { text = "󰅺 ", color = colorInfo },
   }
 
   for type, icon in pairs(signs) do
