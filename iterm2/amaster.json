@@ -441,7 +441,7 @@
         "Green Component": 0.14901961
       },
       "Blur": false,
-      "Normal Font": "SauceCodeProNerdFontCompleteM-Regular 15",
+      "Normal Font" : "SauceCodeProNFM 15",
       "Vertical Spacing": 1,
       "Ansi 7 Color": {
         "Red Component": 0.65098040000000001,
