@@ -56,45 +56,7 @@ The next args allows you to run the function in a granular way, feel free to com
 
 At the end it will output all the symlinks created, any errors creating symlinks and any backup files created.
 
-#### toggle-js-configs
-Running this function on the terminal will toggle the symlinks for `eslint` and `prettier` created on our `~/` with settings with no semicolon or force semicolon.
-
-There's also a vim command for this, doing `:ToggleJsSettings` will call `toggle-js-configs` from vim, changing `prettier` and `eslint` settings on the fly without the need to exit vim
-
 ### Post install
 All the paths should direct you to the dotfiles! There's a `post_exec` function inside the `config.fish`, that listens for any `brew install` and `brew cask install`. Whenever that happens, a Brewfile is dumped.
 After that a check on the git files is done, if the only file changed is the Brewfile, a commit is created and pushed automatically (new files are automatically ignored).
 The message will be `Updated Brewfile :beer:`. You can change this by setting `$DOTFILES_MSG` to whatever you want.
-
-#N?VIM
-My settings for n?vim are split in multiple files, the name of the files are self explanatory.
-
-My `<leader>` is the `,` and I use `fzf`for fuzzy searching with `ag`
-
-Command utils:
-* `AleBufferToggleFixers` - disable ale fixers for the current buffer
-* `ToggleJsSettings` - toggle eslint and prettier settings between no semicolon or semicolon
-* `W` `WA` `Wa` `WQ` `Wq` `Q` `QA` `Qa` `UP` `Up` `X` remapped different saving/exit commands to different cases
-
-Fuzzy searching:
-* `<leader>p` - fuzzy search all the files starting from the root folder, respecting `.gitignore`
-* `<leader>b` - fuzzy search opened buffers
-* `<leader>f` - fuzzy search inside files, respecting `.gitignore`
-* `<CTRL>op` - On insert mode, this keymap will open a fuzzy search of the files and it will insert a relative path to the selected file, based on the opened buffer
-
-#### Editing vim configs
-
-There's two keybindings related to `init.vim`:
-* `<leader>ev` - this will vsplit `init.vim`
-* `<leader>sv` - this will source `init.vim`
-
-As for the other files there are a couple of commands that helps editing them whenever you want:
-* `:DotAutoCmds` - `:vsplit` [Auto Commands](nvim/config/autocmds.vim)
-* `:DotCommands` - `:vsplit` [Commands](nvim/config/commands.vim)
-* `:DotKeymaps` - `:vsplit` [Keymaps](nvim/config/keymaps.vim)
-* `:DotKeymapsNvim` - `:vsplit` [Keymaps for neovim only](nvim/config/keymaps-nvim.vim)
-* `:DotPlugins` - `:vsplit` [Plugins only configs](nvim/config/plugins.vim)
-* `:DotSettings` - `:vsplit` [General settings](nvim/config/settings.vim)
-* `:DotVisuals` - `:vsplit` [Visual settings](nvim/config/visuals.vim)
-
-
