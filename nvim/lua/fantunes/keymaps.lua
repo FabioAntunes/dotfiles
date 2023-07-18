@@ -1,58 +1,45 @@
-require("fantunes.plugins.telescope.keymaps")
-
 local map = vim.api.nvim_set_keymap
-local mapOpts = { noremap = true }
 
--- clear highlights by hitting /
-map("n", "\\", ":noh<CR>", mapOpts)
+vim.keymap.set("n", "\\", ":noh<CR>", { desc = "Clear highlights" })
 
--- new file in current directory
-map("n", "<leader>nf", ":e <C-R>=expand('%:p:h') . '/' <CR>", mapOpts)
+vim.keymap.set(
+  "n",
+  "<leader>nf",
+  ":e <C-R>=expand('%:p:h') . '/' <CR>",
+  { desc = "Create a new file in the current directory" }
+)
 
--- toggle spellcheck
-map("n", "<leader>sc", ":setlocal spell!<CR>", mapOpts)
-
--- shortcut split vertically
-map("n", "<Leader>v", ":vsplit<CR>", mapOpts)
-
--- clean up any trailing whitespace
-map("n", "<Leader>w", ":%s/\\s\\+$//<cr>:let @/=''<CR>", mapOpts)
-
--- source current luafile
-map("n", "<Leader>s", ":luafile %<CR>", mapOpts)
-
--- Move to the beginning/end of the line with H and L
-map("", "H", "^", mapOpts)
-map("", "L", "$", mapOpts)
+vim.keymap.set("n", "<leader>sc", ":setlocal spell!<CR>", { desc = "Toggle spellcheck" })
+vim.keymap.set("n", "<Leader>v", ":vsplit<CR>", { desc = "Split buffer vertically" })
+vim.keymap.set("n", "<Leader>w", ":%s/\\s\\+$//<cr>:let @/=''<CR>", { desc = "Clean up trailing whitespace" })
+vim.keymap.set("", "H", "^", { desc = "Move to the beginning of the file" })
+vim.keymap.set("", "L", "$", { desc = "Move to the end of the file" })
 
 -- Move between buffers faster!!!!
-map("n", "<C-h>", "<C-w>h", mapOpts)
-map("n", "<C-j>", "<C-w>j", mapOpts)
-map("n", "<C-k>", "<C-w>k", mapOpts)
-map("n", "<C-l>", "<C-w>l", mapOpts)
-
--- Keep search matches in the middle of the window.
-map("n", "<C-l>", "<C-w>l", mapOpts)
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to the buffer on the left" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to the buffer on the bottom" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to the buffer on the top" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to the buffer on the right" })
 
 -- http://blog.petrzemek.net/2016/04/06/things-about-vim-i-wish-i-knew-earlier/
 -- better jk normally but don't remap when it's called with a count
 -- useful for visual line breaks, done by vim
-map("", "j", "(v:count == 0 ? 'gj' : 'j')", { noremap = true, silent = true, expr = true })
-map("", "k", "(v:count == 0 ? 'gk' : 'k')", { noremap = true, silent = true, expr = true })
+vim.keymap.set("", "j", "(v:count == 0 ? 'gj' : 'j')", { silent = true, expr = true })
+vim.keymap.set("", "k", "(v:count == 0 ? 'gk' : 'k')", { silent = true, expr = true })
 
 -- Keep search matches in the middle of the window.
-map("n", "n", "nzz", mapOpts)
-map("n", "N", "Nzz", mapOpts)
+vim.keymap.set("n", "n", "nzz", {})
+vim.keymap.set("n", "N", "Nzz", {})
 
 -- make copy/paste from system clip easier
-map("v", "<Leader>8", '"*y', mapOpts)
-map("v", "<Leader>9", '"*p', mapOpts)
-map("n", "<Leader>8", '"*p', mapOpts)
+vim.keymap.set("v", "<Leader>8", '"*y', { desc = "Copy selected text to the clipboard" })
+vim.keymap.set("v", "<Leader>9", '"*p', { desc = "Paste text from the clipboard" })
+vim.keymap.set("n", "<Leader>8", '"*p', { desc = "Paste text from the clipboard" })
 
 -- move blocks and visual blocks up and down
-map("n", "∆", ":m .+1<CR>==", mapOpts)
-map("n", "˚", ":m .-2<CR>==", mapOpts)
-map("i", "∆", "<ESC>:m .+1<CR>==gi", mapOpts)
-map("i", "˚", "<ESC>:m .-2<CR>==gi", mapOpts)
-map("v", "∆", ":m '>+1<CR>gv=gv", mapOpts)
-map("v", "˚", ":m '<-2<CR>gv=gv", mapOpts)
+vim.keymap.set("n", "∆", ":m .+1<CR>==", {})
+vim.keymap.set("n", "˚", ":m .-2<CR>==", {})
+vim.keymap.set("i", "∆", "<ESC>:m .+1<CR>==gi", {})
+vim.keymap.set("i", "˚", "<ESC>:m .-2<CR>==gi", {})
+vim.keymap.set("v", "∆", ":m '>+1<CR>gv=gv", {})
+vim.keymap.set("v", "˚", ":m '<-2<CR>gv=gv", {})

@@ -58,6 +58,7 @@ return require("packer").startup(function(use)
   use({
     "nvim-telescope/telescope.nvim",
     cmd = { "Telescope", "TelescopeDotfiles" },
+    module = "telescope",
     requires = {
       { "nvim-lua/popup.nvim", opt = true },
       { "nvim-lua/plenary.nvim" },
