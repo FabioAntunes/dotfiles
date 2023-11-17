@@ -130,10 +130,12 @@ lspconfig.lua_ls.setup({
 lspconfig.terraformls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = { "terraform", "terraform-vars", "hcl" },
 })
 lspconfig.tflint.setup({
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = { "terraform", "terraform-vars", "hcl" },
 })
 
 -- YAML setup

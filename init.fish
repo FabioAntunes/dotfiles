@@ -121,10 +121,10 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl completion fish >~/.config/fish/completions/kubectl.fish
 
-set base_url "https://github.com/ahmetb/kubectx/releases/download/v0.9.4"
-set ctx_filename 'kubectx_v0.9.4_'$os'_x86_64.tar.gz'
+set base_url "https://github.com/ahmetb/kubectx/releases/download/v0.9.5"
+set ctx_filename 'kubectx_v0.9.5_'$os'_x86_64.tar.gz'
 set ctx_url $base_url'/'$ctx_filename
-set ns_filename 'kubens_v0.9.4_'$os'_x86_64.tar.gz'
+set ns_filename 'kubens_v0.9.5_'$os'_x86_64.tar.gz'
 set ns_url $base_url'/'$ns_filename
 set destination_path /usr/local/bin
 

@@ -9,12 +9,21 @@ end
 local live_grep_hidden = function()
   builtin.live_grep({ hidden = true })
 end
+
+local close_nnn = function(callback)
+  return function()
+    local keys = "<C-\\><C-n><cmd>q<CR>"
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), "xn", true)
+    callback()
+  end
+end
+
 vim.keymap.set("n", "<leader>tk", builtin.keymaps, { desc = "List available keymaps" })
 vim.keymap.set("n", "<leader>td", builtin.diagnostics, { desc = "List all diagnostics in the project" })
 vim.keymap.set("n", "<leader>p", find_files_hidden, { desc = "Fuzzy search file names" })
-vim.keymap.set("t", "<leader>p", find_files_hidden, { desc = "Fuzzy search file names" })
+vim.keymap.set("t", "<leader>p", close_nnn(find_files_hidden), { desc = "Fuzzy search file names" })
 vim.keymap.set("n", "<leader>f", live_grep_hidden, { desc = "Fuzzy search string in files" })
-vim.keymap.set("t", "<leader>f", live_grep_hidden, { desc = "Fuzzy search string in files" })
+vim.keymap.set("t", "<leader>f", close_nnn(live_grep_hidden), { desc = "Fuzzy search string in files" })
 vim.keymap.set("n", "<leader>wf", function()
   builtin.grep_string({ hidden = true })
 end, {
@@ -26,7 +35,7 @@ end, {
   desc = "Fuzzy search the word selected or under the cursor",
 })
 vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Fuzzy search open buffers" })
-vim.keymap.set("t", "<leader>b", builtin.buffers, { desc = "Fuzzy search open buffers" })
+vim.keymap.set("t", "<leader>b", close_nnn(builtin.buffers), { desc = "Fuzzy search open buffers" })
 
 local search_dotfiles = function()
   require("telescope.builtin").find_files({
@@ -36,7 +45,12 @@ local search_dotfiles = function()
   })
 end
 vim.keymap.set("n", "<leader>dot", search_dotfiles, { desc = "Fuzzy search file names in the dotfiles folder" })
-vim.keymap.set("t", "<leader>dot", search_dotfiles, { desc = "Fuzzy search file names in the dotfiles folder" })
+vim.keymap.set(
+  "t",
+  "<leader>dot",
+  close_nnn(search_dotfiles),
+  { desc = "Fuzzy search file names in the dotfiles folder" }
+)
 
 -- function adapted from https://svn.science.uu.nl/repos/edu.3803627.INFOMOV/0AD/build/premake/premake4/src/base/path.lua
 local relativePath = function(src, dst)
