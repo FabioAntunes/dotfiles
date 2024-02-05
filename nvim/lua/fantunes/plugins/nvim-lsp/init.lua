@@ -54,6 +54,10 @@ local on_attach = function(client, bufnr)
     vim.diagnostic.disable()
   end
 
+  if client.name == "tflint" then
+    vim.diagnostic.config({ signs = false })
+  end
+
   if client.server_capabilities.documentHighlightProvider and client.name ~= "efm" then
     vim.cmd([[
       augroup lsp_document_highlight
