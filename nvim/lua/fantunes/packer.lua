@@ -71,6 +71,7 @@ return require("packer").startup(function(use)
 
   use({
     "luukvbaal/nnn.nvim",
+    commit = "62b01532a9dcb0111459b308668aebdb0088bfd8",
     config = function()
       require("fantunes.plugins.nnn-nvim")
     end,
