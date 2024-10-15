@@ -7,10 +7,19 @@ set -gx fish_emoji_width 2
 set -gx fish_greeting ''
 # use ag to pipe the results to fzf, ag respects the gitignore
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
-set paths_to_add $HOME/platform-tools $HOME/.krew/bin $HOME/google-cloud-sdk/bin
+set paths_to_add $HOME/platform-tools $HOME/.krew/bin $HOME/google-cloud-sdk/bin /opt/homebrew/bin $HOME/bin
 # stupid gcloud
-set -gx CLOUDSDK_PYTHON /usr/local/bin/python3.9
+set -gx CLOUDSDK_PYTHON /opt/homebrew/bin/python3.12
 set -gx KUBE_EDITOR nvim
+
+#create abbreviations
+abbr -a gout git checkout
+abbr -a g git
+abbr -a k kubectl
+abbr -a me cd $HOME/playground
+abbr -a dot cd $DOTFILES
+abbr -a work cd $HOME/work
+abbr -a snyk cd $HOME/work/snyk
 
 if type -q go
     set -gx GOPATH (go env GOPATH)

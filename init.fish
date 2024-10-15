@@ -1,4 +1,10 @@
 set -gx os (uname | tr '[:upper:]' '[:lower:]')
+set -gx arch (uname -m | tr '[:upper:]' '[:lower:]')
+set -gx kubectl_arch $arch
+if test $arch = x86_64
+  set -gx kubectl_arch amd64
+end
+
 ############################
 ### source yolo function ###
 ############################
@@ -10,19 +16,12 @@ source fish/functions/yolo.fish
 set -gx fish_greeting
 set -gx $DOTFILES (dirname (realpath (status --current-filename)))
 
-#create abbreviations
-abbr -a gout git checkout
-abbr -a g git
-abbr -a k kubectl
-abbr -a me cd $HOME/playground
-abbr -a dot cd $DOTFILES
-abbr -a work cd $HOME/work
-
 #################
 ### make dirs ###
 #################
 mkdir -p $HOME/.local/share/nvim/undodir
 mkdir -p $HOME/.vim/undodir
+mkdir -p $HOME/bin
 mkdir -p $HOME/go
 mkdir -p $HOME/playground
 mkdir -p $HOME/work
@@ -56,9 +55,9 @@ curl -sL https://git.io/fisher | source && fisher update
 ### brew bundle  ###
 ####################
 if [ (uname) = Darwin ]
-    brew update
+    /opt/homebrew/bin/brew update
     echo "Installing brew dependencies, it will take 💩💩💩 loads of time. Time for a ☕️"
-    brew bundle --global --verbose
+    /opt/homebrew/bin/brew bundle --global --verbose
 end
 
 ####################
@@ -110,21 +109,20 @@ end
 echo "Installing nnn"
 echo $DOTFILES/nnn
 pushd ./nnn
-ls -la
 git submodule update --init --recursive
 make O_NERD=1
 sudo make install
 popd
 
-curl -LO 'https://dl.k8s.io/release/v1.26.13/bin/'$os'/amd64/kubectl'
+curl -LO 'https://dl.k8s.io/release/v1.28.14/bin/'$os'/'$kubectl_arch'/kubectl'
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl completion fish >~/.config/fish/completions/kubectl.fish
 
 set base_url "https://github.com/ahmetb/kubectx/releases/download/v0.9.5"
-set ctx_filename 'kubectx_v0.9.5_'$os'_x86_64.tar.gz'
+set ctx_filename 'kubectx_v0.9.5_'$os'_'$arch'.tar.gz'
 set ctx_url $base_url'/'$ctx_filename
-set ns_filename 'kubens_v0.9.5_'$os'_x86_64.tar.gz'
+set ns_filename 'kubens_v0.9.5_'$os'_'$arch'.tar.gz'
 set ns_url $base_url'/'$ns_filename
 set destination_path /usr/local/bin
 

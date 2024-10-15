@@ -78,7 +78,7 @@ local on_attach_without_format = function(client, bufnr)
 end
 
 -- Tsserver setup
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   capabilities = capabilities,
   root_dir = lspconfig.util.root_pattern("yarn.lock", ".git", "package.json"),
   on_attach = on_attach_without_format,

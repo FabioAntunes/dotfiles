@@ -15,6 +15,7 @@ config_git () {
   git config --global init.defaultBranch main
   git config --global commit.gpgSign true
   git config --global user.signingkey 5FA46F5D9283889A5DEA82559A22C137957B5A47
+  git config --global core.editor "nvim"
   if [ "$GITHUB_ACTIONS" != "true" ]; then
     git remote set-url origin git@github.com:FabioAntunes/dotfiles.git
   fi
@@ -69,7 +70,7 @@ if [ "$(uname)" == "Darwin" ]; then
   defaults write -g KeyRepeat -int 2
   touch $HOME/.hushlogin
   install_brew
-  brew install fish
+  /opt/homebrew/bin/brew install fish
 else
   sudo apt-get update
   sudo apt-get install -y software-properties-common
