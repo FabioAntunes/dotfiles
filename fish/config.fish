@@ -11,6 +11,7 @@ set paths_to_add $HOME/platform-tools $HOME/.krew/bin $HOME/google-cloud-sdk/bin
 # stupid gcloud
 set -gx CLOUDSDK_PYTHON /opt/homebrew/bin/python3.12
 set -gx KUBE_EDITOR nvim
+set -gx nvm_alias_output $HOME/bin
 
 #create abbreviations
 abbr -a gout git checkout

@@ -25,6 +25,8 @@ mkdir -p $HOME/bin
 mkdir -p $HOME/go
 mkdir -p $HOME/playground
 mkdir -p $HOME/work
+mkdir -p $HOME/tmp
+touch $HOME/tmp/efm.log
 
 ######################
 ### install awscli ###
