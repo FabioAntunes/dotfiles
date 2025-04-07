@@ -10,8 +10,9 @@ set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 set paths_to_add $HOME/platform-tools $HOME/.krew/bin $HOME/google-cloud-sdk/bin /opt/homebrew/bin $HOME/bin
 # stupid gcloud
 set -gx CLOUDSDK_PYTHON /opt/homebrew/bin/python3.12
-set -gx KUBE_EDITOR nvim
 set -gx nvm_alias_output $HOME/bin
+set -gx EDITOR nvim
+set -gx VISUAL "$EDITOR"
 
 #create abbreviations
 abbr -a gout git checkout
@@ -48,5 +49,6 @@ if status --is-interactive
         source '$HOME/google-cloud-sdk/path.fish.inc'
     end
     source ~/.config/fish/functions/__dot_brew_post_install.fish
+    navi widget fish | source
     starship init fish | source
 end
