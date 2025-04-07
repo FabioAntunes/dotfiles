@@ -138,6 +138,9 @@ rm $ns_filename
 curl https://sh.rustup.rs -sSf | sh
 cargo install stylua
 
+#### configure theme
+fish_config theme save "Catppuccin Mocha"
+
 ############
 ### YOLO ###
 ############
