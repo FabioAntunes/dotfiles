@@ -1,0 +1,13 @@
+% kubernetes, k8s
+
+# base64 decode all the data keys in a kubernetes secret with json
+ jq -r '.data | keys[] as $k | "\($k): \(.[$k] | @base64d)"'
+
+# better kubectl export as yaml
+ yq eval 'del(.metadata.resourceVersion, .metadata.uid, .metadata.annotations, .metadata.creationTimestamp, .metadata.selfLink, .metadata.managedFields)' -
+
+# get terraform from a configmap
+ jq -r .data.terraform | terraform fmt -
+
+# get terraform from a configmap, remove ssh and copy it
+  jq -r .data.terraform | terraform fmt - | sed 's/git@github.com:/github.com\//' | pbcopy

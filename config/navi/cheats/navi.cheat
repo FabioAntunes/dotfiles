@@ -1,0 +1,19 @@
+% navi
+
+# Download default cheatsheets
+navi repo add denisidoro/cheats
+
+# Browse for cheatsheet repos
+navi repo browse
+
+# Edit main local cheatsheets
+nvim $DOTFILES/config/navi/cheats/main.cheat
+
+# Edit config file
+nvim $DOTFILES/config/navi/config.yaml
+
+# Search using tldr
+navi --tldr "<query>"
+
+# Search using cheatsh
+navi --cheatsh "<query>"
