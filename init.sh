@@ -77,7 +77,7 @@ else
   sudo apt-add-repository -y ppa:fish-shell/release-3
   sudo apt-add-repository -y ppa:neovim-ppa/stable
   sudo apt-get update
-  sudo apt-get -y install fish vim-gtk python3 python3-dev python3-pip python3-setuptools neovim
+  sudo apt-get -y install fish python3 python3-dev python3-pip python3-setuptools neovim
 fi
 
 set_fish_shell
