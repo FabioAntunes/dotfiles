@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 require("fantunes.options")
-require("fantunes.packer")
+require("fantunes.lazy")
 require("fantunes.keymaps")
-
-require("fantunes.plugins.base16.schemes").load()
+vim.cmd.colorscheme "catppuccin"
