@@ -51,4 +51,5 @@ if status --is-interactive
     source ~/.config/fish/functions/__dot_brew_post_install.fish
     navi widget fish | source
     starship init fish | source
+    bind \cn _call_navi
 end

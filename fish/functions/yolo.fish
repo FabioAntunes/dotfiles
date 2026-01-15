@@ -98,10 +98,6 @@ function yolo -d "All your dotfiles are belong to us"
                 set dist_file $dist_path'/vimrc'
             end
 
-            if string match -q -- '*noop*' $file
-                continue
-            end
-
 
             if test -d $src_file
                 iterate $src_file $dist_file
