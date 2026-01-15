@@ -1,0 +1,7 @@
+% gpg
+
+# gpg kill and start agent
+gpgconf --kill gpg-agent && gpgconf --launch gpg-agent
+
+# learn yubikey serial number
+gpg-connect-agent "scd serialno" "learn --force" /bye

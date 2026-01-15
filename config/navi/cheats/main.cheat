@@ -1,6 +1,13 @@
 % yolo
 
-# gpg kill and start agent
-gpgconf --kill gpg-agent && gpgconf --launch gpg-agent
+# list all images from a docker repo
+crane ls <remote-repo>
 
+# query dns records from a domain
+nslookup -debug -q=cname
 
+# tar a file
+tar -cvf output.tar dirname
+
+# tar create a gzip file
+tar -cvzf output.tar.gz itemtocompress

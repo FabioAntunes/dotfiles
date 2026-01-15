@@ -1,0 +1,7 @@
+% terraform
+
+# grep terraform resources and remove them in batch
+terraform state list | grep <terraform_grep_string> | tr '\n' '\0' | xargs -0 terraform state rm
+
+# terraform providers lock
+terraform providers lock -platform=darwin_amd64 -platform=linux_amd64
