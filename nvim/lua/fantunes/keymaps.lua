@@ -1,12 +1,10 @@
-local map = vim.api.nvim_set_keymap
-
 vim.keymap.set("n", "\\", ":noh<CR>", { desc = "Clear highlights" })
 
 vim.keymap.set(
   "n",
   "<leader>nf",
-  ":e <C-R>=expand('%:p:h') . '/' <CR>",
-  { desc = "Create a new file in the current directory" }
+  ":Neotree reveal<cr>",
+  { desc = "Open Neotree with the current file focused" }
 )
 
 vim.keymap.set("n", "<leader>sc", ":setlocal spell!<CR>", { desc = "Toggle spellcheck" })

@@ -19,8 +19,9 @@ return {
     end,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
-      { "<c-space>", desc = "Increment Selection" },
-      { "<bs>",      desc = "Decrement Selection", mode = "x" },
+      { "gnn", desc = "Increment Node Selection" },
+      { "grc", desc = "Increment Scope Selection" },
+      { "grm", desc = "Decrement Selection" },
     },
     opts_extend = { "ensure_installed" },
     ---@type TSConfig

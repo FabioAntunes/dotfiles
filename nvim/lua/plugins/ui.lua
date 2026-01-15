@@ -17,7 +17,21 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      "franco-ruggeri/codecompanion-lualine.nvim",
+    },
+    opts = {
+      theme = "catppuccin",
+      sections = {
+        lualine_x = {
+          "codecompanion",
+          'encoding',
+          'fileformat',
+          'filetype',
+        },
+      },
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -34,12 +48,7 @@ return {
     keys = {
       { "<leader>nnn", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
     },
-    opts = {
-       filesystem = {
-        -- bind_to_cwd = true
-        cwd_target = {sidebar = "global"}
-      }
-    }
+    opts = {}
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -105,7 +114,7 @@ return {
       },
 
       -- (Default) Only show the documentation popup when manually triggered
-      completion = { 
+      completion = {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
@@ -121,7 +130,15 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
       },
 
       fuzzy = { implementation = "prefer_rust_with_warning" }

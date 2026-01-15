@@ -16,9 +16,16 @@ return {
       skip_unbalanced = true,
       -- better deal with markdown code blocks
       markdown = true,
-    },
-    config = function(_, opts)
-      UtilCore.mini.pairs(opts)
-    end,
+    }
   },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+  }
 }

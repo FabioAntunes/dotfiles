@@ -8,10 +8,6 @@ augroup fantunes
   " automatically rebalance windows on vim resize
   autocmd VimResized * :wincmd =
 
-  " set json syntax to rc files
-  autocmd BufNewFile,BufRead .babelrc,.eslintrc,.stylelintrc setlocal filetype=json
-
-
   " Don't add the comment prefix when I hit enter or o/O on a comment line.
   autocmd FileType * setlocal formatoptions-=r formatoptions-=o
 
